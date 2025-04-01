@@ -1,0 +1,91 @@
+table VW_F_PRODUCT_ACV_EXCEPTIONS
+	lineageTag: 9d8feb56-09af-469a-900a-f3b7011e225a
+
+	column OPPORTUNITY_ID
+		dataType: string
+		lineageTag: 68047c9f-05ec-407f-9aeb-244c09114a78
+		summarizeBy: none
+		sourceColumn: OPPORTUNITY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OPPORTUNITY_NAME
+		dataType: string
+		lineageTag: 8ad45aac-8339-4dbd-87a2-46d820adb56f
+		summarizeBy: none
+		sourceColumn: OPPORTUNITY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLOSE_DATE
+		dataType: dateTime
+		formatString: mm-dd-yyyy
+		lineageTag: d971cb56-ab2e-4e50-973c-cae7d6ec8240
+		summarizeBy: none
+		sourceColumn: CLOSE_DATE
+
+		variation Variation
+			isDefault
+			relationship: 073b535b-dc1f-48be-aea1-ca22ecf35d9a
+			defaultHierarchy: LocalDateTable_2e653519-44d7-44b9-beed-f49f15f394ae.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column OPTY_OBJ_ACV
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 47dc7a05-30f3-4ad7-8bec-c3a2d98fad3d
+		summarizeBy: sum
+		sourceColumn: OPTY_OBJ_ACV
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCT_ACV
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 0d0ca1ac-69b4-4ca0-b586-42d2fc96a8e8
+		summarizeBy: sum
+		sourceColumn: PRODUCT_ACV
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIFF
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: e8399b6e-038e-4b93-bbef-03479cf14c6c
+		summarizeBy: sum
+		sourceColumn: DIFF
+
+		annotation SummarizationSetBy = Automatic
+
+	column REASON
+		dataType: string
+		lineageTag: 15cee514-2e5f-4e61-91b2-8b1b570edb62
+		summarizeBy: none
+		sourceColumn: REASON
+
+		annotation SummarizationSetBy = Automatic
+
+	column URL = "https://onetrustprivacy.lightning.force.com/lightning/r/Opportunity/"& VW_F_PRODUCT_ACV_EXCEPTIONS[OPPORTUNITY_ID]&"/view"
+		lineageTag: 2c97c851-433e-4f7f-96ca-d32cb303e48f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VW_F_PRODUCT_ACV_EXCEPTIONS = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("onetrust-adw.snowflakecomputing.com","BI_WH"),
+				    ADW_DB_Database = Source{[Name="ADW_DB",Kind="Database"]}[Data],
+				    FACT_SALES_Schema = ADW_DB_Database{[Name="FACT_SALES",Kind="Schema"]}[Data],
+				    VW_F_PRODUCT_ACV_EXCEPTIONS_View = FACT_SALES_Schema{[Name="VW_F_PRODUCT_ACV_EXCEPTIONS",Kind="View"]}[Data]
+				in
+				    VW_F_PRODUCT_ACV_EXCEPTIONS_View
+
+	annotation PBI_ResultType = Table
+

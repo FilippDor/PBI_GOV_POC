@@ -1,0 +1,1761 @@
+table '13.NewDev'
+	lineageTag: 5cf69dd6-c2a4-444b-b4fd-76dd0451ad11
+
+	measure _SUMX_ACV = ```
+			
+			VAR res = 
+			SUMX(
+			    SUMMARIZE(
+			        '13.NewDev'
+			        ,'13.NewDev'[Solution_Name]
+			        ,"S_SUM",[Solution_ACV_Value]
+			    )
+			    ,[S_SUM]
+			)
+			RETURN 
+			IF([_solution_is_Filtered],res,[Solution_ACV_Value])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: 7073f97e-fb9e-48a4-af33-6fa70fc9ad7b
+
+	measure _SUMX_ACV_CQ = ```
+			
+			VAR res = 
+			SUMX(
+			    SUMMARIZE(
+			        '13.NewDev'
+			        ,'13.NewDev'[Solution_Name]
+			        ,"S_SUM",[Solution_ACV_Value_CQ]
+			    )
+			    ,[S_SUM]
+			)
+			RETURN 
+			IF([_solution_is_Filtered],res,[Solution_ACV_Value_CQ])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: a8d1690e-1b54-4e27-a2ce-24a5eb61c9ec
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure Solution_ACV_Value = ```
+			
+			VAR res =  
+			    SWITCH(
+			        SELECTEDVALUE('13.NewDev'[Solution_Order]),
+			        0,[ACV_CW]
+			        ,1,[_$ACV_AIGOVERNANCE_CW]
+			        ,2,[_$ACV_CMP_CW]
+			        ,3,[_$ACV_DATA_GOVERNANCE_CW]
+			        ,4,[_$ACV_PLATFORM_CW]
+			        ,5,[_$ACV_PRIVACY_AUTOMATION_CW]
+			        ,6,[_$ACV_SUCCESS_PACKAGES_CW]
+			        ,7,[_$ACV_TRC_CW]
+			        ,8,[_$ACV_TPM_CW]
+			        ,9,[_$ACV_UCPM_CW]
+			    )
+			
+			RETURN 
+			IF([_solution_is_Filtered], CALCULATE(res),[ACV_CW])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: 1c6c46c6-52dd-4c03-bb32-cac2a3a9cc1d
+
+	measure Solution_ACV_Value_CQ = ```
+			
+			
+			CALCULATE(
+			    [Solution_ACV_Value]
+			    ,KEEPFILTERS(VW_D_DATE[ROLLING_FISCAL_QUARTER] = 0) 
+			)
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: 8a0ae007-51e4-44d7-911b-1aed96695ea6
+
+	measure _$ACV_AIGOVERNANCE_CW =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_AIGOVERNANCE])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\BaseMeasures
+		lineageTag: 8757bb80-1eb4-4b4a-8036-7637caf83f1a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_CMP_CW =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_CMP])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\BaseMeasures
+		lineageTag: e73ec01b-191a-47e4-9206-cd1f099eb809
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_DATA_GOVERNANCE_CW =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_DATA_GOVERNANCE])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\BaseMeasures
+		lineageTag: a12c45b3-83f5-449b-8e67-f68b0b637707
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PLATFORM_CW =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PLATFORM])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\BaseMeasures
+		lineageTag: 36f9099e-b563-4b62-a002-070be66dde80
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PRIVACY_AUTOMATION_CW =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PRIVACY_AUTOMATION])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\BaseMeasures
+		lineageTag: 7dfb129b-9611-49ba-931a-9f98c01d350f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_SUCCESS_PACKAGES_CW =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_SUCCESS_PACKAGES])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\BaseMeasures
+		lineageTag: b02b7c63-509e-468c-8f35-4750fff4138f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TPM_CW =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_THIRD_PARTY_MANAGEMENT])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\BaseMeasures
+		lineageTag: 361568d6-d2af-4d64-9199-4e7fbeca423e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TRC_CW =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_TECH_RISK_COMPLIANCE])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\BaseMeasures
+		lineageTag: 4db8d8de-ffb1-4c0f-a75a-9dfa6983bf62
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_UCPM_CW =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_UCPM])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\BaseMeasures
+		lineageTag: 6d27503f-00e9-4324-b5f5-2ad0814d085e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _SUMX_ESP = ```
+			
+			VAR res = 
+			SUMX(
+			    SUMMARIZE(
+			        '13.NewDev'
+			        ,'13.NewDev'[Solution_Name]
+			        ,"S_SUM",[Solution_ESP_Value]
+			    )
+			    ,[S_SUM]
+			)
+			RETURN 
+			IF([_solution_is_Filtered],res,[Solution_ESP_Value])
+			```
+		displayFolder: 01.New_Dev_Measures\ESP\AggrMeasures
+		lineageTag: 8ac74cbf-5669-4ef7-8a5d-c2e7f57e3d5e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _SUMX_ESP_CQ = ```
+			
+			VAR res = 
+			SUMX(
+			    SUMMARIZE(
+			        '13.NewDev'
+			        ,'13.NewDev'[Solution_Name]
+			        ,"S_SUM",[Solution_ESP_Value_CQ]
+			    )
+			    ,[S_SUM]
+			)
+			RETURN 
+			IF([_solution_is_Filtered],res,[Solution_ESP_Value_CQ])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\AggrMeasures
+		lineageTag: d073b038-463b-43bd-9286-f61d7a80ba1e
+
+	measure Solution_ESP_Value = ```
+			
+			VAR res =  
+			    SWITCH(
+			        SELECTEDVALUE('13.NewDev'[Solution_Order]),
+			        0,[_$ACV_ESP]
+			        ,1,[_$ACV_AIGOVERNANCE_ESP]
+			        ,2,[_$ACV_CMP_ESP]
+			        ,3,[_$ACV_DATA_GOVERNANCE_ESP]
+			        ,4,[_$ACV_PLATFORM_ESP]
+			        ,5,[_$ACV_PRIVACY_AUTOMATION_ESP]
+			        ,6,[_$ACV_SUCCESS_PACKAGES_ESP]
+			        ,7,[_$ACV_TRC_ESP]
+			        ,8,[_$ACV_TPM_ESP]
+			        ,9,[_$ACV_UCPM_ESP]
+			    )
+			
+			RETURN 
+			IF([_solution_is_Filtered], res,[_$ACV_ESP])
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\AggrMeasures
+		lineageTag: 671c898f-c890-48ff-98d5-4fa0b0ce94f1
+
+	measure Solution_ESP_Value_CQ = ```
+			
+			
+			CALCULATE(
+			    [Solution_ESP_Value]
+			    ,KEEPFILTERS(VW_D_DATE[ROLLING_FISCAL_QUARTER] = 0) 
+			)
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\AggrMeasures
+		lineageTag: f9fb5fc3-187f-4a3a-bfbc-997161432d81
+
+	measure _$ACV_AIGOVERNANCE_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_AIGOVERNANCE])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: 95483581-d796-459b-a229-fa2adc7c2887
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_CMP_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_CMP])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: 48fc24ec-7818-4a29-9a67-0b5a77a650be
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_DATA_GOVERNANCE_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_DATA_GOVERNANCE])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: 7565c792-006b-4375-b8b5-109085ae9356
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PLATFORM_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PLATFORM])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: efe94b8e-9f33-43e2-b13c-9bb8c4e3d3ea
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PRIVACY_AUTOMATION_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PRIVACY_AUTOMATION])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: 2dc728b7-89f5-48f4-967a-8e3be03a3f4a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_SUCCESS_PACKAGES_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_SUCCESS_PACKAGES])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: ef58aa58-872c-4831-b827-4608e22c4162
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TPM_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_THIRD_PARTY_MANAGEMENT])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: 223e4ecc-59be-4c1e-b10f-c55640e758ea
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TRC_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_TECH_RISK_COMPLIANCE])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: 537814c2-15ac-4425-a0ab-848198a8d0e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_UCPM_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_UCPM])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: c546b403-dc0d-49fe-a447-107beb2dd402
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _SUMX_LSP = ```
+			
+			VAR res = 
+			SUMX(
+			    SUMMARIZE(
+			        '13.NewDev'
+			        ,'13.NewDev'[Solution_Name]
+			        ,"S_SUM",[Solution_LSP_Value]
+			    )
+			    ,[S_SUM]
+			)
+			RETURN 
+			IF([_solution_is_Filtered],res,[Solution_LSP_Value])
+			```
+		displayFolder: 01.New_Dev_Measures\LSP\AggrMeasures
+		lineageTag: aa502e7e-22ab-46f7-b672-7f77a9bb21ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _SUMX_LSP_CQ = ```
+			
+			VAR res = 
+			SUMX(
+			    SUMMARIZE(
+			        '13.NewDev'
+			        ,'13.NewDev'[Solution_Name]
+			        ,"S_SUM",[Solution_LSP_Value_CQ]
+			    )
+			    ,[S_SUM]
+			)
+			RETURN 
+			IF([_solution_is_Filtered],res,[Solution_LSP_Value_CQ])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\AggrMeasures
+		lineageTag: 29223639-ba1a-495f-8e3d-6b7037c64d69
+
+	measure Solution_LSP_Value = ```
+			
+			VAR res =  
+			    SWITCH(
+			        SELECTEDVALUE('13.NewDev'[Solution_Order]),
+			        0,[_$ACV_LSP]
+			        ,1,[_$ACV_AIGOVERNANCE_LSP]
+			        ,2,[_$ACV_CMP_LSP]
+			        ,3,[_$ACV_DATA_GOVERNANCE_LSP]
+			        ,4,[_$ACV_PLATFORM_LSP]
+			        ,5,[_$ACV_PRIVACY_AUTOMATION_LSP]
+			        ,6,[_$ACV_SUCCESS_PACKAGES_LSP]
+			        ,7,[_$ACV_TRC_LSP]
+			        ,8,[_$ACV_TPM_LSP]
+			        ,9,[_$ACV_UCPM_LSP]
+			    )
+			
+			RETURN 
+			IF([_solution_is_Filtered], res,[_$ACV_LSP])
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\AggrMeasures
+		lineageTag: 46825a69-261c-41e1-b6ab-70cc036a04fa
+
+	measure Solution_LSP_Value_CQ = ```
+			
+			
+			CALCULATE(
+			    [Solution_LSP_Value]
+			    ,KEEPFILTERS(VW_D_DATE[ROLLING_FISCAL_QUARTER] = 0) 
+			)
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\AggrMeasures
+		lineageTag: 38d6b03a-6c04-4736-88d7-6b9625ff7f82
+
+	measure _$ACV_AIGOVERNANCE_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_AIGOVERNANCE])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: dc8e366a-1d9c-403b-ace4-eea632ab82a7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_CMP_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_CMP])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: 13815741-fd91-4b7c-9523-5a28f056d430
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_DATA_GOVERNANCE_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_DATA_GOVERNANCE])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: 344d1f60-0a82-46fc-8047-89911b096a02
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PLATFORM_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PLATFORM])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: 9a034058-2e3c-408c-bf9c-dce066b040cf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PRIVACY_AUTOMATION_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PRIVACY_AUTOMATION])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: 3d11cf17-fe3f-47fb-9cc8-538a59662886
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_SUCCESS_PACKAGES_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_SUCCESS_PACKAGES])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: 349d9fad-b3f5-47ad-95bc-b35b20107333
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TPM_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_THIRD_PARTY_MANAGEMENT])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: bbb26c24-9f47-44aa-a975-c5fde3257d6f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TRC_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_TECH_RISK_COMPLIANCE])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: 3036a9b6-9008-49d4-ab72-5509da3e63ce
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_UCPM_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_UCPM])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: 537b51c9-8ba3-470f-ae70-4895142519d5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _SUMX_OpenPipe = ```
+			
+			VAR res = 
+			SUMX(
+			    SUMMARIZE(
+			        '13.NewDev'
+			        ,'13.NewDev'[Solution_Name]
+			        ,"S_SUM",[Solution_OpenPipe_Value]
+			    )
+			    ,[S_SUM]
+			)
+			RETURN 
+			IF([_solution_is_Filtered],res,[Solution_OpenPipe_Value])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\AggrMeasures
+		lineageTag: 922da5bd-8435-482f-80ba-8b808a19fe1c
+
+	measure _SUMX_OpenPipe_CQ = ```
+			
+			VAR res = 
+			SUMX(
+			    SUMMARIZE(
+			        '13.NewDev'
+			        ,'13.NewDev'[Solution_Name]
+			        ,"S_SUM",[Solution_OpenPipe_Value_CQ]
+			    )
+			    ,[S_SUM]
+			)
+			RETURN 
+			IF([_solution_is_Filtered],res,[Solution_OpenPipe_Value_CQ])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\AggrMeasures
+		lineageTag: fd9f3ae7-3a4f-4cd3-a228-28684f216c98
+
+	measure Solution_OpenPipe_Value = ```
+			
+			VAR res =  
+			    SWITCH(
+			        SELECTEDVALUE('13.NewDev'[Solution_Order]),
+			        0,[_$ACV_OPEN_PIPELINE]
+			        ,1,[_$ACV_AIGOVERNANCE_OpenPipe]
+			        ,2,[_$ACV_CMP_OpenPipe]
+			        ,3,[_$ACV_DATA_GOVERNANCE_OpenPipe]
+			        ,4,[_$ACV_PLATFORM_OpenPipe]
+			        ,5,[_$ACV_PRIVACY_AUTOMATION_OpenPipe]
+			        ,6,[_$ACV_SUCCESS_PACKAGES_OpenPipe]
+			        ,7,[_$ACV_TRC_OpenPipe]
+			        ,8,[_$ACV_TPM_OpenPipe]
+			        ,9,[_$ACV_UCPM_OpenPipe]
+			    )
+			
+			RETURN 
+			IF([_solution_is_Filtered], res,[_$ACV_OPEN_PIPELINE])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\AggrMeasures
+		lineageTag: d1ee080f-a051-44fa-b849-c27823877bb3
+
+	measure Solution_OpenPipe_Value_CQ = ```
+			
+			
+			CALCULATE(
+			    [Solution_OpenPipe_Value]
+			    ,KEEPFILTERS(VW_D_DATE[ROLLING_FISCAL_QUARTER] = 0) 
+			)
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\AggrMeasures
+		lineageTag: 1dedd9ab-c4b4-45a9-92f2-7941b3daa0a5
+
+	measure _$ACV_AIGOVERNANCE_OpenPipe =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_AIGOVERNANCE])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\BaseMeasures
+		lineageTag: 05e6c9d6-0c85-44a3-bc37-6df83dac7b36
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_CMP_OpenPipe =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_CMP])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\BaseMeasures
+		lineageTag: 2769ef62-3946-4df0-97d8-c2edaa6a3d59
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_DATA_GOVERNANCE_OpenPipe =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_DATA_GOVERNANCE])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\BaseMeasures
+		lineageTag: 79bf2d4d-b289-4f49-9928-73926112e627
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PLATFORM_OpenPipe =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PLATFORM])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\BaseMeasures
+		lineageTag: c93fa5d6-5142-4ec5-9f71-f6177068cf02
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PRIVACY_AUTOMATION_OpenPipe =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PRIVACY_AUTOMATION])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\BaseMeasures
+		lineageTag: 00e1b715-ed40-4dbe-b242-5792880fc443
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_SUCCESS_PACKAGES_OpenPipe =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_SUCCESS_PACKAGES])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\BaseMeasures
+		lineageTag: 3aeb3abd-5630-432b-b4da-8a9e7cf92f7d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TPM_OpenPipe =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_THIRD_PARTY_MANAGEMENT])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\BaseMeasures
+		lineageTag: 0e8a679a-3b95-4898-aa3f-e8e83330bb91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TRC_OpenPipe =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_TECH_RISK_COMPLIANCE])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\BaseMeasures
+		lineageTag: 7113d646-9470-4bf3-a15f-d5d5da37f2c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_UCPM_OpenPipe =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_UCPM])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe\BaseMeasures
+		lineageTag: 427f0334-5a38-437c-bfd1-79f894b27f43
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _sel_Solutions =
+			
+			
+			IF(
+			    [_solution_is_Filtered]
+			    ,CONCATENATEX(
+			        '13.NewDev'
+			        ,'13.NewDev'[Solution_Name]
+			        ," , "
+			    )
+			    ,"ACV"
+			)
+		displayFolder: 01.New_Dev_Measures\00.FormatMeasures
+		lineageTag: a06e5828-c0d6-46b5-ac86-d2309740e121
+
+	measure _solution_is_Filtered = ```
+			ISFILTERED('13.NewDev'[Solution_Name])
+			
+			```
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: 01.New_Dev_Measures\00.FormatMeasures
+		lineageTag: d0a324b3-080b-41fe-b852-6289a32d331a
+
+	measure _sel_solution_ACV = ```
+			
+			IF(
+			    ISFILTERED('13.NewDev'[Solution_Name])
+			    ,SELECTEDVALUE('13.NewDev'[Solution_Name]) & " ACV"
+			    ,"ACV"
+			) 
+			```
+		displayFolder: 01.New_Dev_Measures\00.FormatMeasures
+		lineageTag: 6c2c9136-48dd-4b2a-a73f-3a6f31917caf
+
+	measure _sel_solution_ACV_Land/Expand =
+			
+			[_sel_solution_ACV] & " by Land/Expand"
+		displayFolder: 01.New_Dev_Measures\00.FormatMeasures
+		lineageTag: 5c351e85-5585-49bc-af35-9e225aca8589
+
+	measure _sel_solution_ACV_OpenPipe =
+			
+			[_sel_solution_ACV] & " Open Pipeline"
+		displayFolder: 01.New_Dev_Measures\00.FormatMeasures
+		lineageTag: c225faac-f354-4805-adc8-81ff7fa5fae4
+
+	measure _sel_solution_ACV_Qrt_Month =
+			
+			[_sel_solution_ACV] & " by Quarter Month"
+		displayFolder: 01.New_Dev_Measures\00.FormatMeasures
+		lineageTag: 26309c5a-65cc-4459-8194-48c992261540
+
+	measure Solution_ACV_%PQ =
+			
+			
+			DIVIDE(
+			    [Solution_ACV_Value_CQ]
+			    ,[Solution_ACV_Value_CQ-1]
+			    ,""
+			) - 1
+		formatString: 0%;-0%;0%
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: 54285420-bac6-4362-bf34-25745f356de5
+
+	measure Solution_ACV_Value_CQ-1 = ```
+			
+			
+			CALCULATE(
+			    [Solution_ACV_Value]
+			    ,KEEPFILTERS(VW_D_DATE[ROLLING_FISCAL_QUARTER] = -1) 
+			)
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: 68b87440-d6f0-4aa4-8159-aba443302bba
+
+	measure _$ACV_ESP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_USD])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Early Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ESP\BaseMeasures
+		lineageTag: bd4bd5ad-440f-41f2-92be-a0fd4efab0f6
+
+	measure _$ACV_LSP =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_USD])
+			    ,VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\LSP\BaseMeasures
+		lineageTag: 7762c67f-be78-49ee-b1b9-524ab0b1ead6
+
+	measure _$ACV_OPEN_PIPELINE =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_USD])
+			    ,VW_F_ACV[STAGEADVANCEMENT] IN {"Early Stage Pipeline", "Late Stage Pipeline"}
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\OpenPipe
+		lineageTag: 6aca2d58-6e0a-4d11-aab2-b8e09003cc6e
+
+	measure Sales_Cycle_Solution =
+			CALCULATE(
+			    AVERAGE(VW_F_ACV[SALES_CYCLE])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: 7a729907-ea9b-4b8b-88cd-4eab0ba8bc69
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sales_Cycle_Solution_AIGOV =
+			CALCULATE(
+			    [Sales_Cycle_Solution]
+			    ,VW_F_ACV[ACV_AIGOVERNANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: 92ecda32-e575-4e0e-adfb-db1493436022
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sales_Cycle_Solution_CMP =
+			CALCULATE(
+			    [Sales_Cycle_Solution]
+			    ,VW_F_ACV[ACV_CMP] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: b9e8dcf3-d5b2-403f-9716-b34cc203732c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sales_Cycle_Solution_DATAGOV =
+			CALCULATE(
+			    [Sales_Cycle_Solution]
+			    ,VW_F_ACV[ACV_DATA_GOVERNANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: 5f5e432d-bf0e-402f-8933-8e3a81c02374
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sales_Cycle_Solution_PLATFORM =
+			CALCULATE(
+			    [Sales_Cycle_Solution]
+			    ,VW_F_ACV[ACV_PLATFORM] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: 474b8ce6-a0bb-4d76-b112-1794829e1c91
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sales_Cycle_Solution_PRIVACY_AUTO =
+			CALCULATE(
+			    [Sales_Cycle_Solution]
+			    ,VW_F_ACV[ACV_PRIVACY_AUTOMATION] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: 4e958bf0-4d01-48f3-9722-61427369007b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sales_Cycle_Solution_SUCCESS_PACK =
+			CALCULATE(
+			    [Sales_Cycle_Solution]
+			    ,VW_F_ACV[ACV_SUCCESS_PACKAGES] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: 9ab6b282-7058-40e8-a5d3-ff7e28678d95
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sales_Cycle_Solution_TPM =
+			CALCULATE(
+			    [Sales_Cycle_Solution]
+			    ,VW_F_ACV[ACV_THIRD_PARTY_MANAGEMENT] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: 02737a94-7bde-4580-87cf-489dbcb15f1d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sales_Cycle_Solution_TRC =
+			CALCULATE(
+			    [Sales_Cycle_Solution]
+			    ,VW_F_ACV[ACV_TECH_RISK_COMPLIANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: d1f1d178-9f2d-4845-933a-45d6d5e5ff32
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sales_Cycle_Solution_UCPM =
+			CALCULATE(
+			    [Sales_Cycle_Solution]
+			    ,VW_F_ACV[ACV_UCPM] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle\BaseMeasures
+		lineageTag: f4ac25d9-38b0-421d-b98a-167c73be6a30
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution =
+			CALCULATE(
+			    SUM(VW_F_ACV[SPLIT_RATIO])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: 701b1dad-fcf9-45e3-9deb-0537850b63a5
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution_AIGOV =
+			CALCULATE(
+			    [Deal_Volume_Solution]
+			    ,VW_F_ACV[ACV_AIGOVERNANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: b8e15ebd-f64b-45a5-8bd0-828fdcde8f20
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution_CMP =
+			CALCULATE(
+			    [Deal_Volume_Solution]
+			    ,VW_F_ACV[ACV_CMP] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: b0ad13dc-3dbf-413b-abc1-e92ddbc1908e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution_DATAGOV =
+			CALCULATE(
+			    [Deal_Volume_Solution]
+			    ,VW_F_ACV[ACV_DATA_GOVERNANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: 27409575-a61d-4da7-af5a-b25a2b5fea1b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution_PLATFORM =
+			CALCULATE(
+			    [Deal_Volume_Solution]
+			    ,VW_F_ACV[ACV_PLATFORM] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: c2d2113f-4ca5-4aca-b62c-70700e384ab7
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution_PRIVACY_AUTO =
+			CALCULATE(
+			    [Deal_Volume_Solution]
+			    ,VW_F_ACV[ACV_PRIVACY_AUTOMATION] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: 7b511bfa-6271-4b98-b553-b11d2305c145
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution_SUCCESS_PACK =
+			CALCULATE(
+			    [Deal_Volume_Solution]
+			    ,VW_F_ACV[ACV_SUCCESS_PACKAGES] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: dea8c07f-8092-43c8-bb81-27858850df18
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution_TPM =
+			CALCULATE(
+			    [Deal_Volume_Solution]
+			    ,VW_F_ACV[ACV_THIRD_PARTY_MANAGEMENT] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: 99a9d313-b5e8-4aef-bf11-fd59ad2e7d5a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution_TRC =
+			CALCULATE(
+			    [Deal_Volume_Solution]
+			    ,VW_F_ACV[ACV_TECH_RISK_COMPLIANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: 1d9a2b1c-749d-4367-9bce-b037b70eee3f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Deal_Volume_Solution_UCPM =
+			CALCULATE(
+			    [Deal_Volume_Solution]
+			    ,VW_F_ACV[ACV_UCPM] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume\BaseMeasures
+		lineageTag: 423d3f58-c7d9-4c2e-983a-17b30cc48de3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution =
+			CALCULATE(
+			    SUM(VW_F_ACV[SPLIT_RATIO])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost"
+			    ,VW_F_ACV[RENEWAL_OPPTY_TYPE_FLAG] = FALSE ()
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: c709f930-9a66-4177-a6d5-2b0e81eb1433
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution_AIGOV =
+			CALCULATE(
+			    [Lost_Volume_Solution]
+			    ,VW_F_ACV[ACV_AIGOVERNANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: fa9bad6b-6a86-4170-b3dc-327a2c5b1d0b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution_CMP =
+			CALCULATE(
+			    [Lost_Volume_Solution]
+			    ,VW_F_ACV[ACV_CMP] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: ec596ea1-5e57-4fee-b7c1-db4df70c845d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution_DATAGOV =
+			CALCULATE(
+			    [Lost_Volume_Solution]
+			    ,VW_F_ACV[ACV_DATA_GOVERNANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: 6ca6bc39-d734-4e11-b299-bddb50d92486
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution_PLATFORM =
+			CALCULATE(
+			    [Lost_Volume_Solution]
+			    ,VW_F_ACV[ACV_PLATFORM] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: 5722aaa8-4ccf-400e-b16e-244b86c73ca9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution_PRIVACY_AUTO =
+			CALCULATE(
+			    [Lost_Volume_Solution]
+			    ,VW_F_ACV[ACV_PRIVACY_AUTOMATION] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: f0b7f438-1f11-426a-8ffa-8cc10996de40
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution_SUCCESS_PACK =
+			CALCULATE(
+			    [Lost_Volume_Solution]
+			    ,VW_F_ACV[ACV_SUCCESS_PACKAGES] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: c1fbb7f7-23fc-4563-973c-ab6f4fae37b5
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution_TPM =
+			CALCULATE(
+			    [Lost_Volume_Solution]
+			    ,VW_F_ACV[ACV_THIRD_PARTY_MANAGEMENT] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: a93c6d2c-18d4-4600-99b0-9c035fecafd3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution_TRC =
+			CALCULATE(
+			    [Lost_Volume_Solution]
+			    ,VW_F_ACV[ACV_TECH_RISK_COMPLIANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: efb390c8-8de8-470c-b06f-52b7a1687db2
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lost_Volume_Solution_UCPM =
+			CALCULATE(
+			    [Lost_Volume_Solution]
+			    ,VW_F_ACV[ACV_UCPM] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume\BaseMeasures
+		lineageTag: f0ff1722-f5cc-4cda-b6f6-e3ac56449b4a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Solution_ACV_CL_Value = ```
+			
+			VAR res =  
+			    SWITCH(
+			        SELECTEDVALUE('13.NewDev'[Solution_Order]),
+			        0,[ACV_CLOSED_LOST]
+			        ,1,[_$ACV_AIGOVERNANCE_CL]
+			        ,2,[_$ACV_CMP_CL]
+			        ,3,[_$ACV_DATA_GOVERNANCE_CL]
+			        ,4,[_$ACV_PLATFORM_CL]
+			        ,5,[_$ACV_PRIVACY_AUTOMATION_CL]
+			        ,6,[_$ACV_SUCCESS_PACKAGES_CL]
+			        ,7,[_$ACV_TRC_CL]
+			        ,8,[_$ACV_TPM_CL]
+			        ,9,[_$ACV_UCPM_CL]
+			    )
+			
+			RETURN 
+			IF([_solution_is_Filtered], CALCULATE(res),[ACV_CLOSED_LOST])
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\AggrMeasures
+		lineageTag: 2764ba6a-6aa2-438d-8b58-7c5603188be8
+
+	measure Solution_ACV_CL_Value_CQ = ```
+			CALCULATE(
+			    [Solution_ACV_CL_Value]
+			    ,KEEPFILTERS(VW_D_DATE[ROLLING_FISCAL_QUARTER] = 0) 
+			)
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\AggrMeasures
+		lineageTag: 3fd1984c-a55b-4793-9b5a-1e9aae082696
+
+	measure _$ACV_AIGOVERNANCE_CL =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_AIGOVERNANCE])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\BaseMeasures
+		lineageTag: a9462b38-daf1-4b96-b528-89b5531d2957
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_CMP_CL =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_CMP])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\BaseMeasures
+		lineageTag: 4b9f9fb5-8e90-4d7b-b6eb-ae971c76a5d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_DATA_GOVERNANCE_CL =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_DATA_GOVERNANCE])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\BaseMeasures
+		lineageTag: feddac51-91bb-407a-b586-b85d7016aa90
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PLATFORM_CL =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PLATFORM])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\BaseMeasures
+		lineageTag: d1065202-9b7f-480f-9fc2-ddc23b054ccd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_PRIVACY_AUTOMATION_CL =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_PRIVACY_AUTOMATION])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\BaseMeasures
+		lineageTag: b7c99d77-73af-4c23-bd4c-b70a6e7765f6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_SUCCESS_PACKAGES_CL =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_SUCCESS_PACKAGES])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\BaseMeasures
+		lineageTag: 3b84c707-64fc-446f-b1b2-29f48eabb7d2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TPM_CL =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_THIRD_PARTY_MANAGEMENT])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\BaseMeasures
+		lineageTag: c890549d-d0e7-4bde-a2b0-56984d610dff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_TRC_CL =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_TECH_RISK_COMPLIANCE])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\BaseMeasures
+		lineageTag: 6b61b45f-3b44-4c6c-8691-92341336d592
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _$ACV_UCPM_CL =
+			
+			CALCULATE(
+			    SUM(VW_F_ACV[ACV_UCPM])
+			    ,VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CL\BaseMeasures
+		lineageTag: 6714b83b-2f29-4f64-be48-ed6aacd8d443
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Solution_Win_Rate =
+			
+			CALCULATE(
+			    DIVIDE(
+			        [Solution_ACV_Value]
+			        ,[Solution_ACV_Value]+[Solution_ACV_CL_Value]
+			        ,0
+			    )
+			    ,VW_F_ACV[RENEWAL_OPPTY_TYPE_FLAG] = FALSE()
+			)
+		formatString: 0%;-0%;0%
+		displayFolder: 01.New_Dev_Measures
+		lineageTag: 3c933d9f-c94b-44b6-a793-b201e8a1439a
+
+	measure _Solution_ACV_Value_Expand =
+			
+			CALCULATE(
+			    [Solution_ACV_Value]
+			    ,VW_F_ACV[LAND_EXPAND] = "Expand"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: 52a239de-726a-411b-b8c3-d64b8e17d8d7
+
+	measure _Solution_ACV_Value_Land =
+			
+			CALCULATE(
+			    [Solution_ACV_Value]
+			    ,VW_F_ACV[LAND_EXPAND] = "Land"
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: fd91e1c1-2eb2-40d9-8437-17b39d82bbc4
+
+	measure _%Solution_ACV_Value_Expand =
+			
+			CALCULATE(
+			    DIVIDE(
+			        [_Solution_ACV_Value_Expand]
+			        ,[Solution_ACV_Value]
+			        ,0
+			    )
+			)
+		formatString: 0%;-0%;0%
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: 06dd05c5-3054-4675-b24e-23c8b80532a2
+
+	measure _%Solution_ACV_Value_Land =
+			
+			CALCULATE(
+			    DIVIDE(
+			        [_Solution_ACV_Value_Land]
+			        ,[Solution_ACV_Value]
+			        ,0
+			    )
+			)
+		formatString: 0%;-0%;0%
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: 4546e0d1-8958-4479-bdbf-e69393c2ae23
+
+	measure Solution_Deal_Volume_Value = ```
+			
+			VAR res =  
+			    SWITCH(
+			        SELECTEDVALUE('13.NewDev'[Solution_Order]),
+			        0,[Deal Volume]
+			        ,1,[Deal_Volume_Solution_AIGOV]
+			        ,2,[Deal_Volume_Solution_CMP]
+			        ,3,[Deal_Volume_Solution_DATAGOV]
+			        ,4,[Deal_Volume_Solution_PLATFORM]
+			        ,5,[Deal_Volume_Solution_PRIVACY_AUTO]
+			        ,6,[Deal_Volume_Solution_SUCCESS_PACK]
+			        ,7,[Deal_Volume_Solution_TRC]
+			        ,8,[Deal_Volume_Solution_TPM]
+			        ,9,[Deal_Volume_Solution_UCPM]
+			    )
+			
+			RETURN 
+			IF([_solution_is_Filtered], CALCULATE(res),[Deal Volume])
+			```
+		formatString: #,0
+		displayFolder: 01.New_Dev_Measures\Deal_Volume
+		lineageTag: 53becc83-b2c1-4424-8d04-d89f96c10c1a
+
+	measure Solution_Lost_Volume_Value = ```
+			
+			VAR res =  
+			    SWITCH(
+			        SELECTEDVALUE('13.NewDev'[Solution_Order]),
+			        0,[Lost Volume]
+			        ,1,[Lost_Volume_Solution_AIGOV]
+			        ,2,[Lost_Volume_Solution_CMP]
+			        ,3,[Lost_Volume_Solution_DATAGOV]
+			        ,4,[Lost_Volume_Solution_PLATFORM]
+			        ,5,[Lost_Volume_Solution_PRIVACY_AUTO]
+			        ,6,[Lost_Volume_Solution_SUCCESS_PACK]
+			        ,7,[Lost_Volume_Solution_TRC]
+			        ,8,[Lost_Volume_Solution_TPM]
+			        ,9,[Lost_Volume_Solution_UCPM]
+			    )
+			
+			RETURN 
+			IF([_solution_is_Filtered], CALCULATE(res),[Lost Volume])
+			```
+		formatString: #,0
+		displayFolder: 01.New_Dev_Measures\Lost_Volume
+		lineageTag: dbf45ee5-40ef-48c5-977c-de69a55f6216
+
+	measure _Solution_Churn_sol_CQ =
+			
+			IF([_solution_is_Filtered], "N/A",[CHURN_THIS_FQ (2)])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: ee140f14-1ecf-4e1a-be82-488fa9ad882d
+
+	measure _Solution_ARR_ren_open_CQ =
+			
+			IF([_solution_is_Filtered], "N/A",[ARR_RENEWABLE_OPEN])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: 2a96841c-7a87-476b-b4d3-2632410d9e11
+
+	measure _Solution_LSP_ConvRate_CQ = ```
+			
+			IF(
+			    [_solution_is_Filtered]
+			    , "N/A"
+			    ,CALCULATE(
+			        [LSP Conversion Rate]
+			        ,KEEPFILTERS(VW_D_DATE[ROLLING_FISCAL_QUARTER] = 0)
+			    ) 
+			)
+			```
+		formatString: 0%;-0%;0%
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: cfc2ae23-0638-4c8f-b06b-07d2a9c4b7e5
+
+	measure _Solution_ACV_Value_CQTD_PY = ```
+			
+			
+			VAR datePY = 
+			DATE(
+			    YEAR(TODAY()) - 1
+			    ,MONTH(TODAY())
+			    ,DAY(TODAY())
+			)
+			
+			VAR res = 
+			CALCULATE(
+			    [Solution_ACV_Value]
+			    ,KEEPFILTERS(VW_D_DATE[ROLLING_FISCAL_QUARTER] = -4)
+			    ,KEEPFILTERS(VW_F_ACV[CLOSE_DATE] < datePY)
+			)
+			
+			RETURN 
+			
+			res
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: fe7d3227-cb15-49b6-ab25-dba5a7c32b71
+
+	measure _Solution_ACV_Value_CQTD_PY% =
+			
+			
+			DIVIDE([Solution_ACV_Value_CQ],[_Solution_ACV_Value_CQTD_PY]) - 1
+		formatString: 0%;-0%;0%
+		displayFolder: 01.New_Dev_Measures\ACV_CW\AggrMeasures
+		lineageTag: 1afc1744-a409-47d0-bcf8-9702ea6c029e
+
+	measure _Solution_Ren_rate_CQ =
+			
+			IF([_solution_is_Filtered], "N/A",[Renewal Rate(2)])
+		formatString: 0%;-0%;0%
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: b74f758c-eb39-4d42-b6b5-a6be75dca620
+
+	measure _Solution_ARR_exp_ren_CQ =
+			
+			IF([_solution_is_Filtered], "N/A",[ARR_EXPIRED_RENEWABLE])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: 73078e54-288c-47e5-8ac3-fc5706a8fd00
+
+	measure _Solution_Conv_rate_CQ =
+			
+			IF([_solution_is_Filtered], "N/A",[Conversion Rate])
+		formatString: 0%;-0%;0%
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: e7e6a75b-7d1d-4acc-b9df-64d222bf7a8a
+
+	measure _Solution_Renewable_ARR =
+			
+			IF([_solution_is_Filtered], "N/A",SUM('VW_F_RENEWALS (2)'[RENEWABLE_ARR_USD]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: f6be2f61-1f74-4858-bef3-6d8a7f96b1da
+
+	measure _Solution_Renewed_ARR =
+			
+			IF([_solution_is_Filtered], "N/A",SUM('VW_F_RENEWALS (2)'[RENEWED_SOFTWARE_ARR_USD]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: 8c457d4b-68d0-49ad-b1b5-9bc68027b965
+
+	measure _Solution_Churn_Lost_ARR =
+			
+			IF([_solution_is_Filtered], "N/A",SUM('VW_F_RENEWALS (2)'[CHURN_LOST_ARR]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: be96d209-4041-4656-942c-ba3f86102051
+
+	measure _Solution_Churn_Downgrade_ARR =
+			
+			IF([_solution_is_Filtered], "N/A",SUM('VW_F_RENEWALS (2)'[CHURN_DOWNGRADE_ARR]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: 7ba97665-ce20-4ecf-a57d-c1f2dee9bc09
+
+	measure _Solution_ASP =
+			
+			IF([_solution_is_Filtered], "N/A",[ASP])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: 02.Not_ACV_Metrics
+		lineageTag: a9768be1-ca0a-4350-bc7a-990174724e31
+
+	measure Solution_Sales_Cycle_Value = ```
+			
+			VAR res =  
+			    SWITCH(
+			        SELECTEDVALUE('13.NewDev'[Solution_Order]),
+			        0,[Sales Cycle]
+			        ,1,[Sales_Cycle_Solution_AIGOV]
+			        ,2,[Sales_Cycle_Solution_CMP]
+			        ,3,[Sales_Cycle_Solution_DATAGOV]
+			        ,4,[Sales_Cycle_Solution_PLATFORM]
+			        ,5,[Sales_Cycle_Solution_PRIVACY_AUTO]
+			        ,6,[Sales_Cycle_Solution_SUCCESS_PACK]
+			        ,7,[Sales_Cycle_Solution_TRC]
+			        ,8,[Sales_Cycle_Solution_TPM]
+			        ,9,[Sales_Cycle_Solution_UCPM]
+			    )
+			
+			RETURN 
+			IF([_solution_is_Filtered], CALCULATE(res),[Sales Cycle])
+			```
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Sales_Cycle
+		lineageTag: cc70dd7d-e9cf-4387-ab1d-644dbfeec063
+
+	measure Opp_Count_Solution =
+			CALCULATE(
+			    SUM(VW_F_ACV[SPLIT_RATIO])
+			    ,VW_F_ACV[CLOSED_ACV_COUNT] = 1
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: fe625462-4687-45cd-b176-196fb6121c19
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opp_Count_Solution_AIGOV =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_AIGOVERNANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: 0de3769e-7e0a-4af7-9f73-73257aa76e08
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opp_Count_Solution_CMP =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_CMP] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: 74712b49-34b3-4695-b8bc-42185251e3dc
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opp_Count_Solution_DATAGOV =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_DATA_GOVERNANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: 988cda11-64b0-4555-97f5-7a40090592ea
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opp_Count_Solution_PLATFORM =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_PLATFORM] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: 593aab08-6879-4cdb-9f9f-c48930e3d784
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opp_Count_Solution_PRIVACY_AUTO =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_PRIVACY_AUTOMATION] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: 8fae191f-9bd3-4223-b3e1-ab27e3981f10
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opp_Count_Solution_SUCCESS_PACK =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_SUCCESS_PACKAGES] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: fc6cdbe8-0c11-4aad-8a24-dc35f5de410e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opp_Count_Solution_TPM =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_THIRD_PARTY_MANAGEMENT] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: 1907209c-3404-4fdf-a1ec-10ff867a03b6
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opp_Count_Solution_TRC =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_TECH_RISK_COMPLIANCE] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: 23614074-cd13-48ac-9ebc-13e57b15fe2d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opp_Count_Solution_UCPM =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_UCPM] <> 0
+			)
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: 7b5d6311-8520-4449-9275-d80b6838b9dd
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Solution_Opp_Count_Value = ```
+			
+			VAR res =  
+			    SWITCH(
+			        SELECTEDVALUE('13.NewDev'[Solution_Order]),
+			        0,[Opp_Count_Solution_ACV]
+			        ,1,[Opp_Count_Solution_AIGOV]
+			        ,2,[Opp_Count_Solution_CMP]
+			        ,3,[Opp_Count_Solution_DATAGOV]
+			        ,4,[Opp_Count_Solution_PLATFORM]
+			        ,5,[Opp_Count_Solution_PRIVACY_AUTO]
+			        ,6,[Opp_Count_Solution_SUCCESS_PACK]
+			        ,7,[Opp_Count_Solution_TRC]
+			        ,8,[Opp_Count_Solution_TPM]
+			        ,9,[Opp_Count_Solution_UCPM]
+			    )
+			
+			RETURN 
+			IF([_solution_is_Filtered], CALCULATE(res),[Opp_Count_Solution_ACV])
+			```
+		formatString: 0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\AggrMeasures
+		lineageTag: 9c028ca4-6a98-45a1-a301-5f777dad93e7
+
+	measure Solution_Opp_Count_Value_<10K =
+			
+			CALCULATE(
+			    [Solution_Opp_Count_Value]
+			    ,VW_F_ACV[ACV Bands] = "<$10K"
+			)
+		formatString: #,0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\AggrMeasures
+		lineageTag: d8d6ab9e-cd1a-4f4c-80b2-8232af7d0c98
+
+	measure Solution_Opp_Count_Value_>200K =
+			
+			CALCULATE(
+			    [Solution_Opp_Count_Value]
+			    ,VW_F_ACV[ACV Bands] = ">$200K"
+			)
+		formatString: #,0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\AggrMeasures
+		lineageTag: cdc9a14c-614a-439c-a65d-8702c62bdfec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Solution_Opp_Count_Value_10-50K =
+			
+			CALCULATE(
+			    [Solution_Opp_Count_Value]
+			    ,VW_F_ACV[ACV Bands] = "$10K-$50K"
+			)
+		formatString: #,0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\AggrMeasures
+		lineageTag: 45251cb2-dc24-48a1-82de-656e7fa3d553
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Solution_Opp_Count_Value_50-200K =
+			
+			CALCULATE(
+			    [Solution_Opp_Count_Value]
+			    ,VW_F_ACV[ACV Bands] = "$50K-$200K"
+			)
+		formatString: #,0
+		displayFolder: 01.New_Dev_Measures\Opp_Count\AggrMeasures
+		lineageTag: fdea47b3-3a71-47d8-a1d8-c60fdd367d9c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Opp_Count_Solution_ACV =
+			CALCULATE(
+			    [Opp_Count_Solution]
+			    ,VW_F_ACV[ACV_USD] <> 0
+			)
+		displayFolder: 01.New_Dev_Measures\Opp_Count\BaseMeasures
+		lineageTag: 1d646e97-f23c-425c-9220-4e10faf54b2d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Solution_Name
+		lineageTag: ba61e3c2-8911-4f1b-91b8-03daa5f92c81
+		summarizeBy: none
+		sourceColumn: [Value1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Solution_Order
+		formatString: 0
+		lineageTag: a07b1167-8598-484a-a6d1-e1eae933507f
+		summarizeBy: sum
+		sourceColumn: [Value2]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'New Calculated Table' = calculated
+		mode: import
+		source =
+				{
+				    // ("ACV", 0),
+				    ("AI GOV", 1),
+				    ("CMP", 2),
+				    ("DATA GOV", 3),
+				    ("PLATFORM", 4),
+				    ("PRIVACY AUTO", 5),
+				    ("SUCCESS PACK", 6),
+				    ("TRC", 7),
+				    ("TPM", 8),
+				    ("UCPM", 9)
+				}
+

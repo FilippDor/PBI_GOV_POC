@@ -1,0 +1,4 @@
+EVALUATE
+    SUMMARIZECOLUMNS(
+        "Open Pipeline", 'ACV Measures'[Open Pipeline]
+    )

@@ -1,0 +1,248 @@
+table 'ACV Measures'
+	lineageTag: 5a0db1ea-0c7a-434a-8790-a3129aefc4aa
+
+	measure 'WIN RATE' = CALCULATE(DIVIDE([ACV_CW],[ACV_CW]+[ACV_CLOSED_LOST],0),VW_F_ACV[RENEWAL_OPPTY_TYPE_FLAG] = FALSE())
+		formatString: 0%;-0%;0%
+		lineageTag: cbfbf23f-e8b3-49c8-a02c-ec42a38c58c4
+
+	measure 'EXPAND % OF ACV' = DIVIDE('ACV Measures'[EXPAND ACV],'ACV Measures'[ACV_CW],0)
+		formatString: 0%;-0%;0%
+		lineageTag: 7f44451b-9a2a-40b8-abe6-44ca5b1b5ef0
+
+	measure 'LAND % OF ACV' = DIVIDE('ACV Measures'[LAND ACV],'ACV Measures'[ACV_CW],0)
+		formatString: 0%;-0%;0%
+		lineageTag: 04f59b2d-69d8-40ef-8506-6c83945bc4c9
+
+	measure 'MY % of ACV' = DIVIDE(SUM(VW_F_ACV[MY_WON_ACV]),'ACV Measures'[ACV_CW],0)
+		formatString: 0%;-0%;0%
+		lineageTag: 1092887a-e893-4ea4-aa0c-ed10ad4cc91c
+
+	measure ACV_CW_THIS_FQ = CALCULATE('ACV Measures'[ACV_CW],VW_F_ACV[IS_CURRENT_FISCAL_QUARTER] = TRUE())
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 0753f96e-5ce1-47f6-9c5f-f5d4b04a43b8
+
+	measure Today = ALLSELECTED('Current Date'[CURRENT_DATE])
+		formatString: mm-dd-yyyy
+		lineageTag: 4080a48e-0eff-4eea-9972-a80e9996fc57
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Current Date' = [Today]
+		formatString: General Date
+		lineageTag: 684d534a-170e-4f94-9fbb-f55c5de42097
+
+	measure SameDateLQ = DATEVALUE([Current Date])-365
+		formatString: mm-dd-yyyy
+		lineageTag: baf190d9-8a32-46b1-8625-bc2d83c1aade
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure DATE_LAST_YEAR =
+			
+			VAR _D = [Today]
+			VAR _DLY = DATE ( YEAR ( _D ) -1, MONTH ( _D ), DAY ( _D ))
+			RETURN
+			_DLY
+		formatString: mm-dd-yyyy
+		lineageTag: 11f4b0a2-2223-4f0e-8ba5-97cf4b726b8e
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure ACV_Y/Y_GROWTH_THIS_FQ =
+			
+			VAR thisQ =
+			    [ACV_CW_THIS_FQ]
+			VAR lastQ =
+			    CALCULATE (
+			        'ACV Measures'[ACV_CW],
+			        DATESBETWEEN(VW_F_ACV[CLOSE_DATE],[DATE_LAST_YEAR_QUARTER_START],[DATE_LAST_YEAR])
+			    )
+			RETURN
+			    DIVIDE ( thisQ - lastQ, lastQ, 0 )
+		formatString: 0%;-0%;0%
+		lineageTag: 89be5cb1-2229-4005-af7d-43c51b807b00
+
+	measure DATE_LAST_YEAR_QUARTER_START = CALCULATE(FIRSTDATE(SAMEPERIODLASTYEAR(VW_D_DATE[FIRST_FISCAL_DAY_OF_QUARTER])),VW_D_DATE[IS_CURRENT_FISCAL_YEAR_QUARTER] = TRUE())
+		formatString: mm-dd-yyyy
+		lineageTag: d32819ae-577a-4e2a-b3f8-93bccc2936b4
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure ACV_YTD = CALCULATE('ACV Measures'[ACV_CW],VW_D_DATE[IS_CURRENT_FISCAL_YEAR] = TRUE())
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6c05b53e-ebf6-4180-98e5-260023b5c34a
+
+	measure ACV_LAST_YEAR_TO_DATE = CALCULATE('ACV Measures'[ACV_CW],DATESBETWEEN(VW_F_ACV[CLOSE_DATE],"02-01-2023",[DATE_LAST_YEAR]))
+		lineageTag: 63c1da4c-7e8e-4337-9389-9fc44f6dfdf4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ACV_Y/Y_GROWTH_YTD = DIVIDE(('ACV Measures'[ACV_YTD]-'ACV Measures'[ACV_LAST_YEAR_TO_DATE]),'ACV Measures'[ACV_LAST_YEAR_TO_DATE],0)
+		formatString: 0%;-0%;0%
+		lineageTag: fe9fa503-e5c8-4eda-abe8-cf1b2f182070
+
+	measure 'LAND ACV' = CALCULATE('ACV Measures'[ACV_CW],VW_F_ACV[LAND_EXPAND] = "Land")
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: aea8dbda-604e-4744-ae6f-e4805ca003e0
+
+	measure 'EXPAND ACV' = CALCULATE('ACV Measures'[ACV_CW],VW_F_ACV[LAND_EXPAND] = "Expand")
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: a8ca8875-d315-4dce-b18f-60a78d53c51f
+
+	measure ACV_CW = CALCULATE(SUM(VW_F_ACV[ACV_USD]),VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: db1b2a12-e1b9-45ec-8f79-03d8037438d2
+
+	measure ACV_CLOSED_LOST = CALCULATE(SUM(VW_F_ACV[ACV_USD]),VW_F_ACV[STAGE_NAME] = "Closed Lost")
+		lineageTag: 76ee1675-e521-435b-ae06-8d13b6d7e741
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ASP = CALCULATE(DIVIDE(SUM(VW_F_ACV[ASP_USD]),SUM(VW_F_ACV[ASP_COUNT]),0),VW_F_ACV[ASP_COUNT] > 0)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 714a27ff-3883-43f1-a377-e75e9dec0152
+
+	measure 'Lost Volume' =
+			
+			CALCULATE (
+			    SUM(VW_F_ACV[SPLIT_RATIO]),
+			    VW_F_ACV[STAGE_NAME] = "Closed Lost",
+			    VW_F_ACV[RENEWAL_OPPTY_TYPE_FLAG] = FALSE ()
+			)
+		formatString: #,0
+		lineageTag: f958ec8b-420e-41b4-b475-930ae8fc6045
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Deal Volume' = ```
+			CALCULATE(SUM(VW_F_ACV[SPLIT_RATIO]),VW_F_ACV[ACV_USD] <> 0 && 
+			VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+			```
+		formatString: #,0
+		lineageTag: 337ca287-13df-42ac-846b-aa5e04c5e7e3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sales Cycle' = CALCULATE(AVERAGE(VW_F_ACV[SALES_CYCLE]),VW_F_ACV[ACV_USD] <> 0 && VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: 0
+		lineageTag: 07f8c0ce-2237-4a4f-b06f-72f96cc2fed4
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure ACV_OPEN_PIPELINE = ```
+			
+			        CALCULATE(
+			            SUM(VW_F_ACV[ACV_USD]),
+			            VW_F_ACV[STAGEADVANCEMENT] 
+			            IN 
+			            {
+			                "Early Stage Pipeline",
+			                "Late Stage Pipeline"
+			                })
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4bfaf2be-85a8-413b-b510-fb33317f35e0
+
+	measure ACV_LSP = CALCULATE(SUM(VW_F_ACV[ACV_USD]),VW_F_ACV[STAGEADVANCEMENT] = "Late Stage Pipeline")
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7ccab9a4-7e2e-4701-bf5c-d19bf88c12e0
+
+	measure Current_Quarter = CALCULATE(MAX(VW_D_DATE[FISCAL_YEAR_QUARTER]),VW_D_DATE[IS_CURRENT_FISCAL_YEAR_QUARTER] = TRUE())
+		lineageTag: fd8012c8-88cf-4e9a-9037-63a0d1a1d0a0
+
+	measure 'ACV Title' = [Current_Quarter] & " ACV"
+		lineageTag: 49a7241d-3f8b-40bf-ae02-431b21873ead
+
+	measure 'Dynamic Title_LSP' = CONCATENATE([Current_Quarter]," LSP")
+		lineageTag: 6b1f2cb7-4710-470c-870c-c1918d2437ef
+
+	measure 'Dynamic Title_OP' = CONCATENATE([Current_Quarter]," OP")
+		lineageTag: 30ae625b-6a2f-4907-9bc0-728e8f252116
+
+	measure CHURN_THIS_FQ = CALCULATE(SUM(VW_F_RENEWALS[CHURN_USD]),FILTER(VW_F_RENEWALS,VW_F_RENEWALS[IS_CURRENT_FISCAL_QUARTER] = TRUE()))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 93711151-c505-476c-97ec-1536de7487fc
+
+	measure 'Expand QTR' = CALCULATE([EXPAND ACV],VW_D_DATE[FISCAL_DAY_OF_QUARTER] <= DAY(UTCTODAY())+61)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 1c3a5fe1-7745-45e8-90c1-650978b5cbe5
+
+	measure 'Land QTR' = CALCULATE([LAND ACV],VW_D_DATE[FISCAL_DAY_OF_QUARTER] <= DAY(UTCTODAY())+61)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 0465d3d2-477d-413d-84ea-5009fe7cd2f2
+
+	measure 'CHURN_THIS_FQ (2)' = CALCULATE(SUM('VW_F_RENEWALS (2)'[CHURN_USD]),FILTER('VW_F_RENEWALS (2)','VW_F_RENEWALS (2)'[IS_CURRENT_FISCAL_QUARTER] = TRUE()))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 7ed1c3c4-e8ea-4f94-8ff2-76a886206086
+
+	measure ACV_OPEN_PIPELINE_THIS_FQ = CALCULATE([ACV_OPEN_PIPELINE],VW_F_ACV[IS_CURRENT_FISCAL_QUARTER] = TRUE())
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 3edc1193-ad37-4dfa-80d2-bafee95e7f66
+
+	measure ACV_LSP_THIS_FQ = CALCULATE([ACV_LSP],VW_F_ACV[IS_CURRENT_FISCAL_QUARTER] = TRUE())
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: db45ff23-649f-4026-a885-181651774874
+
+	measure <$10K_ACV = CALCULATE('ACV Measures'[ACV_CW],VW_F_ACV[ACV Bands] = "<$10K")
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 0cba5237-2bfc-4e62-8aea-74ef47533770
+
+	measure $10K-$50K_ACV = CALCULATE('ACV Measures'[ACV_CW],VW_F_ACV[ACV Bands] = "$10K-$50K")
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 75c744a5-3268-4d2a-91b2-ed01699d4b07
+
+	measure $50K-$200K_ACV = CALCULATE('ACV Measures'[ACV_CW],VW_F_ACV[ACV Bands] = "$50K-$200K")
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 78988e2a-ed85-4b58-a9e2-95eb2b56a265
+
+	measure >$200K_ACV = CALCULATE('ACV Measures'[ACV_CW],VW_F_ACV[ACV Bands] = ">$200K")
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 9694e3dc-e757-4185-959e-28f3e354d0cd
+
+	measure 'Opportunity Count' = CALCULATE(SUM(VW_F_ACV[SPLIT_RATIO]))
+		formatString: #,0
+		lineageTag: bb0adc94-6cb4-47fa-91c7-1ae4ce6378d9
+
+	measure 'Opp Count <$10K' = CALCULATE([Opportunity Count],VW_F_ACV[ACV Bands] = "<$10K",VW_F_ACV[ACV_USD] <> 0 && VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: #,0
+		lineageTag: a7562303-58ed-46ed-a8f3-98b952b28393
+
+	measure 'Opp Count $10K-$50K' = CALCULATE([Opportunity Count],VW_F_ACV[ACV Bands] = "$10K-$50K",VW_F_ACV[ACV_USD] <> 0 && VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: #,0
+		lineageTag: 01183e2f-46a0-41ca-9b94-21732b1c4190
+
+	measure 'Opp Count $50K-$200K' = CALCULATE([Opportunity Count],VW_F_ACV[ACV Bands] = "$50K-$200K",VW_F_ACV[ACV_USD] <> 0 && VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: #,0
+		lineageTag: 37e8d883-4d10-4824-b2bf-435c959df81e
+
+	measure 'Opp Count >$200K' = CALCULATE([Opportunity Count],VW_F_ACV[ACV Bands] = ">$200K",VW_F_ACV[ACV_USD] <> 0 && VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: 0
+		lineageTag: c421aec8-546e-411a-8e8f-eb4cb2cdda70
+
+	measure test =
+			CALCULATE (
+			        'ACV Measures'[ACV_CW],
+			        DATESBETWEEN(VW_F_ACV[CLOSE_DATE],[DATE_LAST_YEAR_QUARTER_START],[DATE_LAST_YEAR]))
+		lineageTag: b05d6e86-72b9-4b90-bf50-9df1438d0270
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dynamic Title_Y/Y Growth' = CONCATENATE([Current_Quarter]," Y/Y Growth")
+		lineageTag: b47408bc-3829-423e-8c74-b2269a72f1b1
+
+	measure 'Services Fees' = CALCULATE(SUM(VW_F_ACV[SERVICES_OTHER_FEES]),VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c28ce8dc-d2aa-43fb-bb69-51fdb6e39b03
+
+	partition 'ACV Measures-eed1997f-8121-4d54-8a41-c6f9e9fc3eec' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

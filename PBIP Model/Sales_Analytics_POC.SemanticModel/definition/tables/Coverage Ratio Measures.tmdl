@@ -1,0 +1,141 @@
+table 'Coverage Ratio Measures'
+	lineageTag: 42d9761c-d70f-461e-8af6-d7e933642375
+
+	measure LTS1 = SUM(VW_F_PIPELINE_HISTORY[LEFT_TO_SELL])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 43bd5449-237d-4e09-96fb-8efdebc341c8
+
+	measure LSP = SUM(VW_F_PIPELINE_HISTORY[LSP_QTD])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 289e16f0-82b2-4e99-89ec-173af0c21b07
+
+	measure 'Late Stage Coverage Ratio' = DIVIDE([LSP],[LTS1],0)
+		lineageTag: fc65d5e3-908e-40d4-a5dd-5d0b4b804f73
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure OP_QTD = SUM(VW_F_PIPELINE_HISTORY[OP_QTD])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: f1551cc1-80ed-4d01-aeff-0e1a98135c2e
+
+	measure 'Coverage Ratio1' = DIVIDE([OP_QTD],[LTS1],0)
+		lineageTag: f131c676-7ba2-4bd0-94f5-15011258bc02
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dynamic Title LSP' = IF(SELECTEDVALUE(VW_F_PIPELINE_HISTORY[FISCAL_QUARTER]) = BLANK(), "", SELECTEDVALUE(VW_F_PIPELINE_HISTORY[FISCAL_QUARTER])) & " Late Stage Pipe"
+		lineageTag: 0f154a18-10e7-4e57-8229-59c4a7ad6095
+
+	measure 'Dynamic Title LTS Coverage' = IF(SELECTEDVALUE(VW_F_PIPELINE_HISTORY[FISCAL_QUARTER]) = BLANK(), "", SELECTEDVALUE(VW_F_PIPELINE_HISTORY[FISCAL_QUARTER])) & " Left to Sell Coverage"
+		lineageTag: ee85517d-945c-49cc-87d1-427794630790
+
+	measure 'Dynamic Title OP' = IF(SELECTEDVALUE(VW_F_PIPELINE_HISTORY[FISCAL_QUARTER]) = BLANK(), "", SELECTEDVALUE(VW_F_PIPELINE_HISTORY[FISCAL_QUARTER])) & " Open Pipeline"
+		lineageTag: bbdc50c1-ad78-4a01-a1f4-a3f0bc4ef0c3
+
+	measure ESP = [OP_QTD] - [LSP]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: f6a854de-20e3-4194-81b4-2e4c731b9d89
+
+	measure 'Closed Lost' = SUM(VW_F_PIPELINE_HISTORY[LOST_QTD])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 039d231e-1aba-4956-b208-7bde4c039fdc
+
+	measure 'Closed Won' = SUM(VW_F_PIPELINE_HISTORY[CW_QTD])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a6332190-fb90-4cb9-8dee-6a9284a6e409
+
+	measure Total = [ESP] + [LSP] + [Closed Lost] + [Closed Won]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 4069744a-0b32-4e7a-a579-be118abff060
+
+	measure Target = SUM(VW_F_PIPELINE_HISTORY[CW_QTR_END])
+		lineageTag: 1521fd79-45a3-47f3-8e38-cfe1c2e4cf02
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CW Conversion' = DIVIDE([Closed Won],[Target],0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: deb4cff5-386d-4ccd-969d-5b91b7d24c43
+
+	measure 'CL Conversion' = DIVIDE([Closed Lost],[Target],0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e5b0c938-3073-41c9-b539-d26beaecca4c
+
+	measure 'LSP Conversion' = DIVIDE([Target],[LSP],0)
+		formatString: 0%;-0%;0%
+		lineageTag: 7f06100a-bbf7-49e5-a64c-70c87856a65b
+
+	measure 'Total Pipeline Conversion' = DIVIDE([Target],[OP_QTD],0)
+		formatString: 0%;-0%;0%
+		lineageTag: 9f119e89-e584-485f-a9f5-fac2b9ae8eb0
+
+	measure CL_QTR_END = SUM(VW_F_PIPELINE_HISTORY[CL_QTR_END])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 74abf3a2-6f45-4891-932e-d763223c8596
+
+	measure 'Latest LSPD' =
+			
+			VAR LastDateGlobal =
+			    CALCULATETABLE (
+			        LASTNONBLANK ( VW_F_PIPELINE_HISTORY[DS], 0 ),
+			        ALLSELECTED ( )
+			    )
+			RETURN
+			    CALCULATE ( SUM ( VW_F_PIPELINE_HISTORY[LSP_QTD] ), KEEPFILTERS ( LastDateGlobal ) ) + 0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: d4303af3-06e9-48f2-a340-25925e554917
+
+	measure 'Latest OPD' =
+			
+			VAR LastDateGlobal =
+			    CALCULATETABLE (
+			        LASTNONBLANK ( VW_F_PIPELINE_HISTORY[DS], 0 ),
+			        ALLSELECTED ( )
+			    )
+			RETURN
+			    CALCULATE ( SUM ( VW_F_PIPELINE_HISTORY[OP_QTD] ), KEEPFILTERS ( LastDateGlobal ) ) + 0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 9c057c30-2e51-4207-96ad-4d52b4b1c116
+
+	measure 'Latest CWD' =
+			
+			VAR LastDateGlobal =
+			    CALCULATETABLE (
+			        LASTNONBLANK ( VW_F_PIPELINE_HISTORY[DS], 0 ),
+			        ALLSELECTED ( )
+			    )
+			RETURN
+			    CALCULATE ( SUM ( VW_F_PIPELINE_HISTORY[CW_QTD] ), KEEPFILTERS ( LastDateGlobal ) ) + 0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: d380ddac-4be7-4450-af09-45ecf249e192
+
+	measure 'Latest LSP' = CALCULATE(SUM(VW_F_PIPELINE_HISTORY[LSP_QTD]),VW_D_DATE[IS_CURRENT_FISCAL_YEAR_QUARTER] = TRUE() && VW_D_DATE[BUSINESS_DAY_OF_FISCAL_QUARTER] = 5)
+		lineageTag: 2a45b94a-012b-4d27-a2f2-6a4692b02998
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Latest OpenPipe' = CALCULATE(SUM(VW_F_PIPELINE_HISTORY[OP_QTD]),VW_D_DATE[IS_CURRENT_FISCAL_YEAR_QUARTER] = TRUE() && VW_D_DATE[BUSINESS_DAY_OF_FISCAL_QUARTER] = 5)
+		lineageTag: cd285b8b-df87-45d3-a1ed-2b0ebbfd856c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'LSP Conversion Rate' = DIVIDE([Latest CWD],[Latest LSP],0)
+		formatString: 0%;-0%;0%
+		lineageTag: 3b7f1a3d-2864-4fa6-9e28-95eb5e4a1b5d
+
+	measure 'Conversion Rate' = DIVIDE([Latest CWD],[Latest OpenPipe],0)
+		formatString: 0%;-0%;0%
+		lineageTag: 09335d13-b635-4b82-bba5-9c3e91be9740
+
+	partition 'Coverage Ratio Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

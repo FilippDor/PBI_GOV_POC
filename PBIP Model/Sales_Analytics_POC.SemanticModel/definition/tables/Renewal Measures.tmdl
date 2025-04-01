@@ -1,0 +1,118 @@
+table 'Renewal Measures'
+	lineageTag: 631ca4d5-30b6-448d-9e4a-c42112b7d5c0
+
+	measure 'ACCOUNTS EXPIRING' = DISTINCTCOUNT(VW_F_RENEWALS[ACCOUNT_ID])
+		formatString: #,0
+		lineageTag: e6bc00a5-0ab7-4b9d-9569-1545444b1bcd
+
+	measure 'ACCOUNTS RENEWED' = CALCULATE([ACCOUNTS EXPIRING],FILTER(VW_F_RENEWALS,VW_F_RENEWALS[STAGE_NAME]= "Closed Won"))
+		formatString: #,0
+		lineageTag: ca3a5d70-6d98-4d6c-ad65-52dbd82c1d50
+
+	measure 'CLOSE RATE' = DIVIDE(SUM(VW_F_RENEWALS[RENEWED_SOFTWARE_ARR_USD]),[WON RENEWABLE ARR USD],0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d9db30db-f719-4892-b616-7d888293e6e6
+
+	measure 'WON RENEWABLE ARR USD' = CALCULATE(SUM(VW_F_RENEWALS[RENEWABLE_ARR_USD]),FILTER(VW_F_RENEWALS,VW_F_RENEWALS[STAGE_NAME] = "Closed Won"))
+		lineageTag: 3f0632de-7626-4621-bc8a-c77ee840e5f0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CLOSED EARLY' = DIVIDE([CLOSED EARLY ARR USD],SUM(VW_F_RENEWALS[RENEWABLE_ARR_USD]),0)
+		formatString: 0%;-0%;0%
+		lineageTag: caab27c4-54be-4445-9f54-0b0051a5873b
+
+	measure 'CLOSED EARLY ARR USD' = CALCULATE(SUM(VW_F_RENEWALS[RENEWED_SOFTWARE_ARR_USD]),FILTER(VW_F_RENEWALS,VW_F_RENEWALS[CLOSED_TYPE] = "01. Early"))
+		lineageTag: c5cd7ea4-8c91-4e13-90de-64f40862cda9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CLOSED IN-QTR' = DIVIDE([CLOSED IN-QTR ARR USD],SUM(VW_F_RENEWALS[RENEWABLE_ARR_USD]),0)
+		formatString: 0%;-0%;0%
+		lineageTag: ec704731-4d02-452c-ba64-05a6e6d6a3e7
+
+	measure 'CLOSED IN-QTR ARR USD' = CALCULATE(SUM(VW_F_RENEWALS[RENEWED_SOFTWARE_ARR_USD]),FILTER(VW_F_RENEWALS,VW_F_RENEWALS[CLOSED_TYPE] = "03. In-Qtr"))
+		lineageTag: 996187e7-09cb-495e-a25e-f6d565dd03ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CLOSED LATE ARR USD' = CALCULATE(SUM(VW_F_RENEWALS[RENEWED_SOFTWARE_ARR_USD]),FILTER(VW_F_RENEWALS,VW_F_RENEWALS[CLOSED_TYPE] = "04. Late"))
+		lineageTag: 70763243-7ed6-4192-9147-f804e4d796a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CLOSED LATE' = DIVIDE([CLOSED LATE ARR USD],SUM(VW_F_RENEWALS[RENEWABLE_ARR_USD]),0)
+		formatString: 0%;-0%;0%
+		lineageTag: 3b1a418b-9a94-46ca-86af-ad4bde112422
+
+	measure 'CLOSED ON-TIME ARR USD' = CALCULATE(SUM(VW_F_RENEWALS[RENEWED_SOFTWARE_ARR_USD]),FILTER(VW_F_RENEWALS,VW_F_RENEWALS[CLOSED_TYPE] = "02. On-Time"))
+		lineageTag: b1894ec0-33fa-45d0-8242-26cfcdf0e077
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CLOSED ON-TIME' = DIVIDE([CLOSED ON-TIME ARR USD],SUM(VW_F_RENEWALS[RENEWABLE_ARR_USD]),0)
+		formatString: 0%;-0%;0%
+		lineageTag: 125d5c54-0c02-4cfa-a052-294e00278434
+
+	measure 'MULTI-YEAR % OF ARR' = DIVIDE(SUM(VW_F_RENEWALS[MY_RENEWED_ARR_USD]),SUM(VW_F_RENEWALS[RENEWED_SOFTWARE_ARR_USD]),0)
+		formatString: 0%;-0%;0%
+		lineageTag: 0023ad74-4a4d-4130-b8a5-f7cb776f5f72
+
+	measure 'MULTI-YEAR % OF COUNT' = DIVIDE(SUM(VW_F_RENEWALS[MY_RENEWED_COUNT]),[OPPORTUNITIES RENEWED],0)
+		formatString: 0%;-0%;0%
+		lineageTag: 8805ba50-8f59-45de-b225-9bf97b5b51e4
+
+	measure 'OPPORTUNITIES EXPIRING' = DISTINCTCOUNT(VW_F_RENEWALS[OPPORTUNITY_ID])
+		formatString: #,0
+		lineageTag: 65f55a2e-1378-4628-9b03-0e48de438f64
+
+	measure 'OPPORTUNITIES RENEWED' = CALCULATE([OPPORTUNITIES EXPIRING],FILTER(VW_F_RENEWALS,VW_F_RENEWALS[STAGE_NAME] = "Closed Won"))
+		formatString: #,0
+		lineageTag: 21163a27-3743-4145-a7d4-d60efcd21681
+
+	measure 'RENEWAL RATE' = DIVIDE(SUM(VW_F_RENEWALS[CLOSED_RENEWED_SOFTWARE_ARR_USD]),SUM(VW_F_RENEWALS[CLOSED_RENEWABLE_ARR_USD]))
+		formatString: 0%;-0%;0%
+		lineageTag: 5066ef81-1002-4333-bccb-8a62d3d3d790
+
+	measure 'Renewed Rate' = DIVIDE(SUM(VW_F_RENEWALS[RENEWED_SOFTWARE_ARR_USD]),SUM(VW_F_RENEWALS[RENEWABLE_ARR_USD]))
+		formatString: 0%;-0%;0%
+		lineageTag: 02ed5325-191f-46e8-9789-4b4fac7d03eb
+
+	measure 'Sales Cycle_R' = CALCULATE(AVERAGE(VW_F_RENEWALS[SALES_CYCLE]),VW_F_RENEWALS[STAGE_NAME] = "Closed Won")
+		formatString: 0
+		lineageTag: 7fa4a3a4-25e0-4248-9b50-f540d4203bde
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure ARR_RENEWABLE_OPEN = CALCULATE(SUM('VW_F_RENEWALS (2)'[OPEN_EXPIRING_RENEWABLE_ARR_USD]),'VW_F_RENEWALS (2)'[IS_CURRENT_FISCAL_QUARTER] = TRUE())
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 45298bb6-9522-46f9-94b1-788233374107
+
+	measure ARR_EXPIRED_RENEWABLE = CALCULATE(SUM('VW_F_RENEWALS (2)'[OPEN_EXPIRING_RENEWABLE_ARR_USD]),'VW_F_RENEWALS (2)'[EXPIRATION_DATE] <= UTCTODAY())
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 87f51fe1-9265-4537-8bd5-3f5602f5e691
+
+	measure 'Renewal Rate(2)' = DIVIDE(SUM('VW_F_RENEWALS (2)'[CLOSED_RENEWED_SOFTWARE_ARR_USD]),SUM('VW_F_RENEWALS (2)'[CLOSED_RENEWABLE_ARR_USD]))
+		formatString: 0%;-0%;0%
+		lineageTag: 8241f334-5729-42f7-9eaa-7ecc2e006c3d
+
+	measure 'Churn Lost ARR' = CALCULATE(SUM(VW_F_RENEWALS[CHURN_USD]),VW_F_RENEWALS[STAGE_NAME] = "Closed Lost")
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c4edac86-fa40-4a9b-b225-10afcce6b2a3
+
+	measure 'Churn Downgrade ARR' = CALCULATE(SUM(VW_F_RENEWALS[CHURN_USD]),VW_F_RENEWALS[STAGE_NAME] = "Closed Won")
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: fdc24636-84ed-4a23-8012-138acad762b6
+
+	partition 'Renewal Measures-e738b8fc-073e-439c-a366-ecbbf5f63ec6' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

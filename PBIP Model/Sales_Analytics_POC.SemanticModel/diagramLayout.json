@@ -1,0 +1,319 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 178.66667175292969
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 346.50329305362254,
+            "y": 259.95367399516692
+          },
+          "nodeIndex": "VW_F_ACV",
+          "nodeLineageTag": "619bff5a-e431-4be0-8af9-c602682d34d9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1017.3275177146352,
+            "y": 343.03759162796626
+          },
+          "nodeIndex": "VW_F_RENEWALS",
+          "nodeLineageTag": "01cd2691-14ed-4be2-ae60-380b9af980a9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1291.3275177146352,
+            "y": 353.38837142864372
+          },
+          "nodeIndex": "ACV Measures",
+          "nodeLineageTag": "5a0db1ea-0c7a-434a-8790-a3129aefc4aa",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1575.3275177146352,
+            "y": 391.38837142864372
+          },
+          "nodeIndex": "D_SOURCE_FRESHNESS",
+          "nodeLineageTag": "8884a5f2-735b-43b3-8190-225501a16129",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 632.37722205776527,
+            "y": 343.08220295889043
+          },
+          "nodeIndex": "VW_D_DATE",
+          "nodeLineageTag": "1435b29a-123e-4cb3-b782-75a7e60e0c1e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1859.3275177146352,
+            "y": 451.38837142864372
+          },
+          "nodeIndex": "Current Date",
+          "nodeLineageTag": "40f01916-1f9d-4fed-8ce5-5ccbc98e7a86",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2143.3275177146352,
+            "y": 353.38837142864372
+          },
+          "nodeIndex": "Coverage Ratio Measures",
+          "nodeLineageTag": "42d9761c-d70f-461e-8af6-d7e933642375",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 200.60298942354393
+          },
+          "nodeIndex": "VW_F_PRODUCT_ACV",
+          "nodeLineageTag": "03b1eec4-7d30-4fdb-8455-13539420544f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2427.3275177146352,
+            "y": 353.38837142864372
+          },
+          "nodeIndex": "Product ACV Measures",
+          "nodeLineageTag": "8a8b8d88-1ed3-424f-be02-b444c7cc7e10",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2711.3275177146352,
+            "y": 353.38837142864372
+          },
+          "nodeIndex": "VW_REF_SORT_ORDER",
+          "nodeLineageTag": "9f9489b1-a35a-42db-8914-ffc023b1fa04",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2995.3275177146352,
+            "y": 353.38837142864372
+          },
+          "nodeIndex": "Renewal Measures",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3279.3275177146352,
+            "y": 367.38837142864372
+          },
+          "nodeIndex": "VW_F_PRODUCT_ACV_EXCEPTIONS",
+          "nodeLineageTag": "9d8feb56-09af-469a-900a-f3b7011e225a",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 59.496828123063551,
+            "y": 554.3879926330269
+          },
+          "nodeIndex": "VW_F_RENEWALS (2)",
+          "nodeLineageTag": "43c11ebf-0ca5-40b3-97af-43c0a0599039",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 856.809042410916,
+            "y": 696.77674285728756
+          },
+          "nodeIndex": "VW_F_PRODUCT_RENEWALS",
+          "nodeLineageTag": "a36a81d5-6dd0-4143-82d2-7a569eb1171d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3563.3275177146352,
+            "y": 353.38837142864372
+          },
+          "nodeIndex": "Product Renewals Measures",
+          "nodeLineageTag": "9e38441c-b012-4ea4-8fe9-555841a9ed7f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3837.3275177146352,
+            "y": 353.38837142864378
+          },
+          "nodeIndex": "REF_SOLUTION_HIERARCHY",
+          "nodeLineageTag": "e782d885-c4a6-4dbe-b7da-89543e37e69d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 743.43994387208147,
+            "y": -10
+          },
+          "nodeIndex": "VW_F_PIPELINE_HISTORY",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4111.3275177146352,
+            "y": 439.38837142864378
+          },
+          "nodeIndex": "13.NewDev",
+          "nodeLineageTag": "5cf69dd6-c2a4-444b-b4fd-76dd0451ad11",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4385.3275177146352,
+            "y": 403.38837142864378
+          },
+          "nodeIndex": "Tables",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4659.3275177146352,
+            "y": 403.38837142864378
+          },
+          "nodeIndex": "MeasuresTable",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 50,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1116.4285697937012,
+            "y": 307
+          },
+          "nodeIndex": "MeasuresTable",
+          "nodeLineageTag": "c056ea76-a875-4a78-81ee-bdb020324cfb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 380.42856979370117,
+            "y": 318
+          },
+          "nodeIndex": "Tables",
+          "nodeLineageTag": "7cfaae91-60d3-4ce4-813a-cb5ad17df70e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Layout 1",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Layout 1",
+  "defaultDiagram": "All tables"
+}
