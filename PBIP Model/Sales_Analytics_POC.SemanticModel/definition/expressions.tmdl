@@ -1,0 +1,24 @@
+expression 'Segment Sort' =
+		let
+		    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Hcq7CoAwDEDRX5HMdfC9K252Kk6lQ7FRilBL7P9jzHY5XGvBFPIFr3iAggacsrCmgpQpvsjUCm2eLqyWh/Lz3+yduI6h1p5uLEy9kNEz9yC9p4BnTBhYRhGOCZz7AA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [SALES_SEGMENT = _t, #"Sales Segment Sort Order" = _t]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"SALES_SEGMENT", type text}, {"Sales Segment Sort Order", Int64.Type}})
+		in
+		    #"Changed Type"
+	lineageTag: 32fb025e-6b7c-439d-a1f9-8e300ba6dffa
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Week_Sort =
+		let
+		    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Lc25EQAhDEPRXhwTIG4q2YCh/zaQV040T9E/xz5YMthNZCGLWMkqNrKJneziIIc4ySkucomb3CKyN3KcPxhFeBLRhEcRVXiWc+8D", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [WEEK_NUMBER = _t, Sort_Order = _t]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"WEEK_NUMBER", type text}, {"Sort_Order", Int64.Type}})
+		in
+		    #"Changed Type"
+	lineageTag: 194f741b-1aaf-40d0-8f2a-2bbad3c8cb4c
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

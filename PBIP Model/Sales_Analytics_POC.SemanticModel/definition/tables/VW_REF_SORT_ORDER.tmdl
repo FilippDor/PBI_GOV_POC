@@ -1,0 +1,179 @@
+table VW_REF_SORT_ORDER
+	lineageTag: 9f9489b1-a35a-42db-8914-ffc023b1fa04
+
+	column SORT_ORDER
+		dataType: double
+		lineageTag: f7579aee-efb4-4424-8033-b6a5aad24f1f
+		summarizeBy: sum
+		sourceColumn: SORT_ORDER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOUD
+		dataType: string
+		lineageTag: f23a4f0b-81ec-4862-bb65-bbda10d76cd5
+		summarizeBy: none
+		sourceColumn: CLOUD
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOMAIN
+		dataType: string
+		lineageTag: 75fcd213-fb80-4d68-8226-cd71edd6bfea
+		summarizeBy: none
+		sourceColumn: DOMAIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column REGION
+		dataType: string
+		lineageTag: f89009ed-f370-439e-9ff3-a51f032d81b3
+		summarizeBy: none
+		sourceColumn: REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENT
+		dataType: string
+		lineageTag: cf59b2df-09e6-4f3e-b7be-27e8386828d1
+		summarizeBy: none
+		sourceColumn: SEGMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column OPPORTUNITY_SOURCE
+		dataType: string
+		lineageTag: fd9e51c5-232d-4301-aaca-4f8343f0b983
+		summarizeBy: none
+		sourceColumn: OPPORTUNITY_SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column NET_ARR_LABEL
+		dataType: string
+		lineageTag: b80213e6-174d-4458-847f-4712547cba4a
+		summarizeBy: none
+		sourceColumn: NET_ARR_LABEL
+
+		annotation SummarizationSetBy = Automatic
+
+	column NET_ARR_LABEL_MODULE
+		dataType: string
+		lineageTag: 8a7b920e-c0b3-4312-b057-d6fb3b24ce67
+		summarizeBy: none
+		sourceColumn: NET_ARR_LABEL_MODULE
+
+		annotation SummarizationSetBy = Automatic
+
+	column LIFECYCLE_STAGE
+		dataType: string
+		lineageTag: 7e80893c-e090-42e4-b112-2ffdd1ab0587
+		summarizeBy: none
+		sourceColumn: LIFECYCLE_STAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		lineageTag: 6e7d9502-0927-4a82-b249-71f4561ff486
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_SEGMENT
+		dataType: string
+		lineageTag: 639698ec-37eb-45be-9a38-fc339adf143c
+		summarizeBy: none
+		sourceColumn: TERRITORY_SEGMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column STAGE_ADVANCEMENT
+		dataType: string
+		lineageTag: 5596f0fa-f3d8-4c82-a425-9326d404781c
+		summarizeBy: none
+		sourceColumn: STAGE_ADVANCEMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column STAGE_NAME
+		dataType: string
+		lineageTag: 69e3abd5-7cff-4268-a0a8-348377cc07dc
+		summarizeBy: none
+		sourceColumn: STAGE_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PACKAGE
+		dataType: string
+		lineageTag: 3c8a76e5-70e3-484a-b77b-e7b41b12224d
+		summarizeBy: none
+		sourceColumn: PACKAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOLUTION
+		dataType: string
+		lineageTag: 3b8cbdd9-8a7b-428f-906d-1c8a2eeb4f7a
+		summarizeBy: none
+		sourceColumn: SOLUTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUB_SOLUTION
+		dataType: string
+		lineageTag: 4d9611d3-04d1-41c3-bcd3-9e6f676d982e
+		summarizeBy: none
+		sourceColumn: SUB_SOLUTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column SVP
+		dataType: string
+		lineageTag: 38fd340f-91e2-433d-813d-7716a99420cb
+		summarizeBy: none
+		sourceColumn: SVP
+
+		annotation SummarizationSetBy = Automatic
+
+	column REPORTING_SOLUTION
+		dataType: string
+		lineageTag: 40e47ee0-c99e-4da7-ab32-03ebff85667b
+		summarizeBy: none
+		sourceColumn: REPORTING_SOLUTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column AOP_REGION
+		dataType: string
+		lineageTag: a4a9c46e-7148-433b-96bd-faf7c309afd0
+		summarizeBy: none
+		sourceColumn: AOP_REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALES_MOTION
+		dataType: string
+		lineageTag: da802368-8220-4558-8ba7-eedc97c9fd64
+		summarizeBy: none
+		sourceColumn: SALES_MOTION
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VW_REF_SORT_ORDER = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("onetrust-adw.snowflakecomputing.com","BI_WH"),
+				    ADW_DB_Database = Source{[Name="ADW_DB",Kind="Database"]}[Data],
+				    DIMS_CONF_Schema = ADW_DB_Database{[Name="DIMS_CONF",Kind="Schema"]}[Data],
+				    VW_REF_SORT_ORDER_View = DIMS_CONF_Schema{[Name="VW_REF_SORT_ORDER",Kind="View"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(VW_REF_SORT_ORDER_View,{{"DOMAIN", "DOMAIN"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

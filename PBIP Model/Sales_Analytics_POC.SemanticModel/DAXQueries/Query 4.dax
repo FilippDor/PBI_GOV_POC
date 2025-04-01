@@ -1,0 +1,9 @@
+DEFINE
+    MEASURE 'ACV Measures'[ACV CW] = CALCULATE(SUM(VW_F_ACV[ACV_USD]),VW_F_ACV[CLOSED_ACV_COUNT] = 1)
+    MEASURE 'ACV Measures'[<$10K_ACV] = CALCULATE('ACV Measures'[ACV CW],VW_F_ACV[ACV Bands] = "<$10K")
+
+EVALUATE
+    SUMMARIZECOLUMNS(
+        "ACV CW", 'ACV Measures'[ACV CW],
+        "<$10K_ACV", 'ACV Measures'[<$10K_ACV]
+    )

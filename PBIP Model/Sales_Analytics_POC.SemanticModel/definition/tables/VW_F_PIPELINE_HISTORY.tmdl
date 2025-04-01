@@ -1,0 +1,295 @@
+table VW_F_PIPELINE_HISTORY
+	lineageTag: 06164161-ff4c-4c9c-b3ca-a3f46dbc24f3
+
+	column DS
+		dataType: dateTime
+		formatString: mm-dd-yyyy
+		lineageTag: ddd301ca-7406-48cb-a841-759a247f33aa
+		summarizeBy: none
+		sourceColumn: DS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column WEEK_NUMBER
+		dataType: string
+		lineageTag: f959b626-761e-4e85-a36f-1483ffbf7c77
+		summarizeBy: none
+		sourceColumn: WEEK_NUMBER
+		sortByColumn: 'Week_Sort.Sort_Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_LAST_DAY_OF_WEEK
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e79526d7-7a02-48ad-aa9c-e0458f86f532
+		summarizeBy: none
+		sourceColumn: IS_LAST_DAY_OF_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SVP
+		dataType: string
+		lineageTag: 848f257b-bb9b-43c7-9b40-8de8a8bd5107
+		summarizeBy: none
+		sourceColumn: SVP
+
+		annotation SummarizationSetBy = Automatic
+
+	column RVP
+		dataType: string
+		lineageTag: 0025f3a2-1a9e-4b40-9bda-e38205ee3342
+		summarizeBy: none
+		sourceColumn: RVP
+
+		annotation SummarizationSetBy = Automatic
+
+	column OP_QTD
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 5801a2cc-89d3-4d87-b14b-5ac10615057d
+		summarizeBy: sum
+		sourceColumn: OP_QTD
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSP_QTD
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 3b47313f-1ec5-407e-8ace-53878d83d6ba
+		summarizeBy: sum
+		sourceColumn: LSP_QTD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CW_QTD
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 3d6b5ead-e470-4619-8b90-7859fc6f988f
+		summarizeBy: sum
+		sourceColumn: CW_QTD
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOST_QTD
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 84d314b2-7e00-4dec-9430-54fa662d7de4
+		summarizeBy: sum
+		sourceColumn: LOST_QTD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CW_QTR_END
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: bc72921a-993e-4e9b-bc90-83efaf994300
+		summarizeBy: sum
+		sourceColumn: CW_QTR_END
+
+		annotation SummarizationSetBy = Automatic
+
+	column TARGET
+		dataType: string
+		lineageTag: 567d34c0-da68-4e29-9885-0979afb721fd
+		summarizeBy: none
+		sourceColumn: TARGET
+
+		annotation SummarizationSetBy = Automatic
+
+	column LEFT_TO_SELL
+		dataType: double
+		lineageTag: 321d54f7-5314-4d69-9f1c-eed9b688e3ff
+		summarizeBy: sum
+		sourceColumn: LEFT_TO_SELL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Week_Sort.Sort_Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: f9af167c-8033-4a91-9c4a-a69060afac05
+		summarizeBy: sum
+		sourceColumn: Week_Sort.Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column CL_QTR_END
+		dataType: double
+		lineageTag: fadde8b4-839b-451d-a21a-53356e9ff016
+		summarizeBy: sum
+		sourceColumn: CL_QTR_END
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOURCE_SYSTEM
+		dataType: string
+		lineageTag: 5200ed2e-1e7e-4c2f-b84a-4affdf1eed4f
+		summarizeBy: none
+		sourceColumn: SOURCE_SYSTEM
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_CREATED_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3be16c6f-6493-4bc7-afd0-29435f6c32e6
+		summarizeBy: none
+		sourceColumn: ELT_CREATED_DATE
+
+		variation Variation
+			isDefault
+			relationship: f89ae5a3-8b9c-4601-b379-c170c9ccf5f7
+			defaultHierarchy: LocalDateTable_24c58743-672a-44f7-bb3c-8b4a6767396c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_CREATED_BY
+		dataType: string
+		lineageTag: 6202aed0-a536-4496-b6f3-6f5e21587008
+		summarizeBy: none
+		sourceColumn: ELT_CREATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_UPDATED_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f4fd09a2-2c5d-44be-b038-7f9578d850e9
+		summarizeBy: none
+		sourceColumn: ELT_UPDATED_DATE
+
+		variation Variation
+			isDefault
+			relationship: 3233168e-80bf-4d36-90ef-4a4ad2211976
+			defaultHierarchy: LocalDateTable_4c2c6f4c-fc2d-43a0-b19a-7dd959734b83.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_UPDATED_BY
+		dataType: string
+		lineageTag: 6d9367ce-a651-417d-9301-f8dd78172456
+		summarizeBy: none
+		sourceColumn: ELT_UPDATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_NAME
+		dataType: string
+		lineageTag: a5296ec5-6b76-4b3c-8128-ca4544b11ca4
+		summarizeBy: none
+		sourceColumn: TERRITORY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_OWNER
+		dataType: string
+		lineageTag: 8e4f337a-852a-48bb-b55f-36eb42d2cb13
+		summarizeBy: none
+		sourceColumn: TERRITORY_OWNER
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_OWNER_ID
+		dataType: string
+		lineageTag: 20f5faf9-c1d5-49bf-97f7-731ff058f730
+		summarizeBy: none
+		sourceColumn: TERRITORY_OWNER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BU
+		dataType: string
+		lineageTag: 993d0531-96bb-4c85-9436-39ffec922188
+		summarizeBy: none
+		sourceColumn: BU
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_REGION
+		dataType: string
+		lineageTag: 0eb86424-4bbd-4d26-bd49-d25e724a8693
+		summarizeBy: none
+		sourceColumn: TERRITORY_REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_SUB_REGION
+		dataType: string
+		lineageTag: 66d5e353-d538-4b71-a25a-450af0cd855f
+		summarizeBy: none
+		sourceColumn: TERRITORY_SUB_REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_SEGMENT
+		dataType: string
+		lineageTag: 3d8e5663-26b0-441c-bd20-7ff49e414027
+		summarizeBy: none
+		sourceColumn: TERRITORY_SEGMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLM
+		dataType: string
+		lineageTag: 92a5c377-82b0-4d4b-9724-5985447bed4e
+		summarizeBy: none
+		sourceColumn: FLM
+
+		annotation SummarizationSetBy = Automatic
+
+	column FISCAL_YEAR_QUARTER
+		dataType: string
+		lineageTag: 617f7b92-9a29-4d24-8c73-bd9ac098e200
+		summarizeBy: none
+		sourceColumn: FISCAL_YEAR_QUARTER
+
+		annotation SummarizationSetBy = Automatic
+
+	column OP_NEXT_QUARTER
+		dataType: double
+		lineageTag: 32bc5140-241a-4d24-9854-ab186ecf9ca8
+		summarizeBy: sum
+		sourceColumn: OP_NEXT_QUARTER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LSP_NEXT_QUARTER
+		dataType: double
+		lineageTag: 2591e086-ffd9-4617-9e7a-01d85ca6ba24
+		summarizeBy: sum
+		sourceColumn: LSP_NEXT_QUARTER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition VW_F_PIPELINE_HISTORY = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("onetrust-adw.snowflakecomputing.com","BI_WH"),
+				    ADW_DB_Database = Source{[Name="ADW_DB",Kind="Database"]}[Data],
+				    FACT_SALES_Schema = ADW_DB_Database{[Name="FACT_SALES",Kind="Schema"]}[Data],
+				    VW_F_PIPELINE_HISTORY_View = FACT_SALES_Schema{[Name="VW_F_PIPELINE_HISTORY",Kind="View"]}[Data],
+				    #"Merged Queries" = Table.NestedJoin(VW_F_PIPELINE_HISTORY_View, {"WEEK_NUMBER"}, Week_Sort, {"WEEK_NUMBER"}, "Week_Sort", JoinKind.LeftOuter),
+				    #"Expanded Week_Sort" = Table.ExpandTableColumn(#"Merged Queries", "Week_Sort", {"Sort_Order"}, {"Week_Sort.Sort_Order"})
+				in
+				    #"Expanded Week_Sort"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

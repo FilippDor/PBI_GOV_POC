@@ -1,0 +1,89 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["VW_F_ACV","VW_F_RENEWALS","VW_D_DATE","D_SOURCE_FRESHNESS","ACV Measures","Renewal Measures","Segment Sort","Current Date","VW_F_PIPELINE_HISTORY","Coverage Ratio Measures","Week_Sort","VW_F_PRODUCT_ACV","Product ACV Measures","VW_REF_SORT_ORDER","VW_F_PRODUCT_ACV_EXCEPTIONS","VW_F_RENEWALS (2)","VW_F_PRODUCT_RENEWALS","Product Renewals Measures","REF_SOLUTION_HIERARCHY"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1253.0 (25.03)+74f9999a1e95f78c739f3ea2b96ba340e9ba8729
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+annotation __TEdtr = 1
+
+ref table VW_F_ACV
+ref table DateTableTemplate_1db5a775-07dc-44ff-9c07-c647641399e2
+ref table LocalDateTable_d97e43c6-ea71-44f7-bb9a-99653c0fd2a5
+ref table LocalDateTable_3d33d68c-94b3-4acf-8937-4968167f8fdc
+ref table VW_F_RENEWALS
+ref table LocalDateTable_9b2eadb7-f874-4004-8b4a-30f7e42d9532
+ref table LocalDateTable_c65b35d1-c224-459c-ab8b-5b7d2da3b59c
+ref table LocalDateTable_e017e8bd-a099-41a0-b579-e7074b51fda3
+ref table VW_D_DATE
+ref table LocalDateTable_a784f9ef-1f47-4d0d-a965-6b9b735e8feb
+ref table LocalDateTable_e43339f1-28b3-48f9-855a-0bdf9e46b717
+ref table LocalDateTable_a0dde9f6-9b51-4fd8-9ee4-3b71db49da36
+ref table LocalDateTable_115d48ca-186f-41f6-a232-dab595f3cc61
+ref table D_SOURCE_FRESHNESS
+ref table LocalDateTable_22e5d3b6-dff0-4cc5-ac62-9ad172b74f20
+ref table 'ACV Measures'
+ref table 'Renewal Measures'
+ref table LocalDateTable_0066f8d0-02b4-47d9-866d-1023296eadd8
+ref table 'Current Date'
+ref table LocalDateTable_f5f698af-6dff-4836-8768-e24035ded4e0
+ref table LocalDateTable_e3e3a40f-3b03-4953-96dd-adb760837ccc
+ref table LocalDateTable_c92d92bb-5c93-49b6-a016-2f627fabcb5c
+ref table LocalDateTable_1e918bd0-bfe4-4847-aa99-95d2c254cbd8
+ref table LocalDateTable_da65be1d-55b8-45cc-98fc-6b076e5c6d04
+ref table LocalDateTable_25dcea1a-d87e-4bbe-bbf7-47399a175289
+ref table LocalDateTable_bf5a1f18-8d8a-4801-97b4-d0f0791184d7
+ref table LocalDateTable_27210145-4ae5-4aa8-874e-65abc7381b70
+ref table VW_F_PIPELINE_HISTORY
+ref table 'Coverage Ratio Measures'
+ref table VW_F_PRODUCT_ACV
+ref table LocalDateTable_2646bec3-faf9-4a4c-8825-21ce1d4535d0
+ref table LocalDateTable_9a2cc2b5-dc52-48b8-9127-7d3237826ac2
+ref table LocalDateTable_3940a965-2cee-402c-8f5f-e2bd88ba9be2
+ref table LocalDateTable_f5b91778-c37f-442b-9abb-e30ae22c9f91
+ref table LocalDateTable_df00f491-d162-4e45-8fa0-ab45bf9e0828
+ref table 'Product ACV Measures'
+ref table VW_REF_SORT_ORDER
+ref table LocalDateTable_e46a12f6-cd23-432a-a0cc-26aa406df5b1
+ref table LocalDateTable_24c58743-672a-44f7-bb3c-8b4a6767396c
+ref table LocalDateTable_4c2c6f4c-fc2d-43a0-b19a-7dd959734b83
+ref table VW_F_PRODUCT_ACV_EXCEPTIONS
+ref table LocalDateTable_2e653519-44d7-44b9-beed-f49f15f394ae
+ref table LocalDateTable_53f72fe6-77a9-4926-b76a-c054b88673ce
+ref table LocalDateTable_115d3c50-7f9a-4e6f-9844-1bd6f69ebd14
+ref table 'VW_F_RENEWALS (2)'
+ref table LocalDateTable_f8be4b67-00a2-474c-a087-da562abbf801
+ref table LocalDateTable_0459e92c-7dcc-40d6-bf74-8cd49ef00335
+ref table LocalDateTable_1ee991b9-7e2d-4652-8131-33983515bcb1
+ref table LocalDateTable_b8ed4b07-9085-4b0c-8620-02b5f5f066b3
+ref table LocalDateTable_d9fbfca6-c0b8-4fe1-9c20-ff1d8cc87e6c
+ref table LocalDateTable_31392727-6b02-4bc3-bd14-0194bea2fe8c
+ref table LocalDateTable_67b5e482-3bf9-4030-b71f-08e08714e94c
+ref table LocalDateTable_96525ebd-e8e0-4d37-93ee-a5ba5cd254b2
+ref table VW_F_PRODUCT_RENEWALS
+ref table LocalDateTable_c17cbe7b-9aee-4283-b10d-d5b410d5b722
+ref table LocalDateTable_f11ee49f-691f-4580-a57d-2eb62d29a7f4
+ref table 'Product Renewals Measures'
+ref table LocalDateTable_ca5be98d-3911-40a4-a487-48d39b6c69d0
+ref table LocalDateTable_9a0e007a-db26-4b78-8ced-fdf54f7cf0e8
+ref table REF_SOLUTION_HIERARCHY
+ref table LocalDateTable_bd2b6090-e8c8-401a-8d4b-b37073eb2331
+ref table LocalDateTable_74c480f9-40e2-4382-b700-d6e036b90b25
+ref table LocalDateTable_3aff17cc-a1e4-4c96-80a5-8f9860b89211
+ref table LocalDateTable_96e984ec-940b-452b-b204-dbcc766a253a
+ref table LocalDateTable_36652e4b-005d-427f-9df7-b8718782bdc0
+ref table '13.NewDev'
+ref table Tables
+ref table MeasuresTable
+
+ref cultureInfo en-US
+

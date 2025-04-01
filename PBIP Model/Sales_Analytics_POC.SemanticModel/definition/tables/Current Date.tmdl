@@ -1,0 +1,33 @@
+table 'Current Date'
+	lineageTag: 40f01916-1f9d-4fed-8ce5-5ccbc98e7a86
+
+	column CURRENT_DATE
+		dataType: dateTime
+		formatString: mm-dd-yyyy
+		lineageTag: c18535e9-a631-40b4-a97e-4de5dbbafc84
+		summarizeBy: none
+		sourceColumn: CURRENT_DATE
+
+		variation Variation
+			isDefault
+			relationship: a67749d0-8227-4c85-9e7b-9369cf9e2978
+			defaultHierarchy: LocalDateTable_f5f698af-6dff-4836-8768-e24035ded4e0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	partition 'Current Date-7bff5992-36ee-453c-9568-470a15ac24a3' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Snowflake.Databases("onetrust-adw.snowflakecomputing.com","BI_WH"){[Name="ADW_DB"]}[Data], "select current_Date from dual", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

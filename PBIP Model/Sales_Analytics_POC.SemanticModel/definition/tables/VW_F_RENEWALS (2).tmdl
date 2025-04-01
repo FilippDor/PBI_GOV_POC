@@ -1,0 +1,1152 @@
+table 'VW_F_RENEWALS (2)'
+	lineageTag: 43c11ebf-0ca5-40b3-97af-43c0a0599039
+
+	column OPPORTUNITY_ID
+		dataType: string
+		lineageTag: 1fead3db-3661-4328-8844-c841c02bd7b8
+		summarizeBy: none
+		sourceColumn: OPPORTUNITY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OPPORTUNITY_NAME
+		dataType: string
+		lineageTag: a54b9e14-0e9c-4866-8703-609650aa4c42
+		summarizeBy: none
+		sourceColumn: OPPORTUNITY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column OPPORTUNITY_TYPE
+		dataType: string
+		lineageTag: 5336c36f-f038-4249-8f96-db5b4a31d094
+		summarizeBy: none
+		sourceColumn: OPPORTUNITY_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column STAGE_NAME
+		dataType: string
+		lineageTag: 21fca11d-bfd8-4e72-b715-177eaf73b832
+		summarizeBy: none
+		sourceColumn: STAGE_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column LEAD_SOURCE
+		dataType: string
+		lineageTag: 5e5b58b7-80e9-4833-9faa-f07e3c0695c6
+		summarizeBy: none
+		sourceColumn: LEAD_SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_ID
+		dataType: string
+		lineageTag: 0a234243-88d8-4427-9649-f6e01055f0f1
+		summarizeBy: none
+		sourceColumn: ACCOUNT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FORECAST_CATEGORY
+		dataType: string
+		lineageTag: fc1bd4aa-a41d-4073-8bc2-b8632d10ed82
+		summarizeBy: none
+		sourceColumn: FORECAST_CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_NAME
+		dataType: string
+		lineageTag: a7df6266-1053-41d4-b981-8353c3302e88
+		summarizeBy: none
+		sourceColumn: ACCOUNT_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_TYPE
+		dataType: string
+		lineageTag: 6456f528-28e0-40a2-b7cb-0c4e830deb37
+		summarizeBy: none
+		sourceColumn: ACCOUNT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENT
+		dataType: string
+		lineageTag: f0641bd2-e9e4-472d-8a8f-19833b86ac74
+		summarizeBy: none
+		sourceColumn: SEGMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENT_SORT_ORDER
+		dataType: double
+		lineageTag: 37971bf7-e12e-4c6c-b9d1-3d61277918cf
+		summarizeBy: sum
+		sourceColumn: SEGMENT_SORT_ORDER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REGION
+		dataType: string
+		lineageTag: 12020487-0686-4563-9d7e-3b346b2d9161
+		summarizeBy: none
+		sourceColumn: REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column REGION_SORT_ORDER
+		dataType: double
+		lineageTag: 2f1e8047-872b-4904-a493-633a05b6b57c
+		summarizeBy: sum
+		sourceColumn: REGION_SORT_ORDER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OWNER
+		dataType: string
+		lineageTag: 149c1a6a-2f6a-4ead-8de3-ba7681f5e534
+		summarizeBy: none
+		sourceColumn: OWNER
+
+		annotation SummarizationSetBy = Automatic
+
+	column OPPORTUNITY_OWNER
+		dataType: string
+		lineageTag: d31ba706-b59c-449d-abe5-aa2baa8e1a66
+		summarizeBy: none
+		sourceColumn: OPPORTUNITY_OWNER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_OWNER_MANAGER
+		dataType: string
+		lineageTag: 7daaec4c-77c5-4f54-b122-717143f057c6
+		summarizeBy: none
+		sourceColumn: ACCOUNT_OWNER_MANAGER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE_KEY
+		dataType: double
+		lineageTag: d4c878b5-acf0-4876-aa6f-fdf838700a68
+		summarizeBy: sum
+		sourceColumn: DATE_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_QUARTER
+		dataType: double
+		lineageTag: ca8dba92-e10e-4b61-ad99-f5ddc856b93d
+		summarizeBy: sum
+		sourceColumn: FISCAL_QUARTER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_YEAR
+		dataType: double
+		formatString: 0
+		lineageTag: e3c5c180-ebab-4ac1-9652-189e886d1aed
+		summarizeBy: sum
+		sourceColumn: FISCAL_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column FISCAL_YEAR_QUARTER
+		dataType: string
+		lineageTag: 4307723a-4707-4812-98f6-0a394238dadb
+		summarizeBy: none
+		sourceColumn: FISCAL_YEAR_QUARTER
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_CURRENT_FISCAL_QUARTER
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1d806850-99ec-4e58-aa85-7ad4df4fb835
+		summarizeBy: none
+		sourceColumn: IS_CURRENT_FISCAL_QUARTER
+
+		annotation SummarizationSetBy = Automatic
+
+	column FISCAL_YEAR_MONTH
+		dataType: string
+		lineageTag: 2ee097b0-40bd-44db-aee9-5c327346457f
+		summarizeBy: none
+		sourceColumn: FISCAL_YEAR_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLOSE_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8273354c-8337-4a7d-813b-032ef4db8ea5
+		summarizeBy: none
+		sourceColumn: CLOSE_DATE
+
+		variation Variation
+			isDefault
+			relationship: 4a6c08d7-3b06-4a1e-936a-c951d89c917b
+			defaultHierarchy: LocalDateTable_f8be4b67-00a2-474c-a087-da562abbf801.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EXPIRATION_DATE
+		dataType: dateTime
+		formatString: mm-dd-yyyy
+		lineageTag: 3540e171-9177-4014-b9ba-d88699fca1fa
+		summarizeBy: none
+		sourceColumn: EXPIRATION_DATE
+
+		variation Variation
+			isDefault
+			relationship: a728f81b-3b61-4f87-8e1a-8f07eb647817
+			defaultHierarchy: LocalDateTable_67b5e482-3bf9-4030-b71f-08e08714e94c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column CONTRACT_TERM_MONTHS
+		dataType: string
+		lineageTag: aae924d8-4bf0-4db1-9abf-8885ef544384
+		summarizeBy: none
+		sourceColumn: CONTRACT_TERM_MONTHS
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_STAGE_CLOSED_WON
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 829e3bdf-7368-428f-ac0d-87c2a1657dca
+		summarizeBy: none
+		sourceColumn: IS_STAGE_CLOSED_WON
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_STAGE_CLOSED_LOST
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0ffe62ad-c26c-4b63-bc35-67dec78e076a
+		summarizeBy: none
+		sourceColumn: IS_STAGE_CLOSED_LOST
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_STAGE_CLOSED_NURTURE
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0e9d5f14-e0a2-417d-813c-a8e0866bb9e8
+		summarizeBy: none
+		sourceColumn: IS_STAGE_CLOSED_NURTURE
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_STAGE_COTERMED
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8ea52b4b-6448-4ef7-a596-c90b6beb0d95
+		summarizeBy: none
+		sourceColumn: IS_STAGE_COTERMED
+
+		annotation SummarizationSetBy = Automatic
+
+	column WINRATE_LEAD_SOURCE_FLAG
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 645e2881-77e0-4fda-b00d-2783b95c4df6
+		summarizeBy: none
+		sourceColumn: WINRATE_LEAD_SOURCE_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column NEW_ADDON_CUST_OPPTY_TYPE_FLAG
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 22d6807c-747f-47a3-afa4-fc8432138d38
+		summarizeBy: none
+		sourceColumn: NEW_ADDON_CUST_OPPTY_TYPE_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column RENEWAL_OPPTY_TYPE_FLAG
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 66899f21-6f19-4214-a951-4c5babb0c3ba
+		summarizeBy: none
+		sourceColumn: RENEWAL_OPPTY_TYPE_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAND_OPPTY_TYPE_FLAG
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5637f556-0ecc-43e4-9633-f2e3d13ea927
+		summarizeBy: none
+		sourceColumn: LAND_OPPTY_TYPE_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_CLOSED_FLAG
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2637d206-03d1-4ada-8c0f-4946c75144e1
+		summarizeBy: none
+		sourceColumn: IS_CLOSED_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURRENCY_LOCAL
+		dataType: string
+		lineageTag: 709258cb-969d-4c15-bdd5-3ea8d73f890d
+		summarizeBy: none
+		sourceColumn: CURRENCY_LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHURN_COUNT
+		dataType: double
+		lineageTag: a2904e6c-1fcb-407b-8101-08d9f512c5c8
+		summarizeBy: sum
+		sourceColumn: CHURN_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CHURN_LOCAL
+		dataType: double
+		lineageTag: 90d40fcc-2c9d-48e6-9b71-4534bc10216c
+		summarizeBy: sum
+		sourceColumn: CHURN_LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CHURN_USD
+		dataType: double
+		lineageTag: 58e8d92c-d31f-43cf-b930-aca158db8913
+		summarizeBy: sum
+		sourceColumn: CHURN_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RENEWED_SOFTWARE_ARR_LOCAL
+		dataType: double
+		lineageTag: 39b9c5df-20f0-4b9f-a363-ce7777257189
+		summarizeBy: sum
+		sourceColumn: RENEWED_SOFTWARE_ARR_LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RENEWED_SOFTWARE_ARR_USD
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 2fa2aa97-a530-4021-9d9e-ea0c5c06ee58
+		summarizeBy: sum
+		sourceColumn: RENEWED_SOFTWARE_ARR_USD
+
+		annotation SummarizationSetBy = Automatic
+
+	column RENEWABLE_ARR_LOCAL
+		dataType: double
+		lineageTag: 7d266bad-be43-4912-9282-65da5ce2c01a
+		summarizeBy: sum
+		sourceColumn: RENEWABLE_ARR_LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RENEWABLE_ARR_USD
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 0bc67db1-82ef-4d43-b504-64e915c426e2
+		summarizeBy: sum
+		sourceColumn: RENEWABLE_ARR_USD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLOSED_RENEWED_SOFTWARE_COUNT
+		dataType: double
+		lineageTag: 01a22902-af6e-4961-ae4a-018d3df4fa0f
+		summarizeBy: sum
+		sourceColumn: CLOSED_RENEWED_SOFTWARE_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOSED_RENEWED_SOFTWARE_ARR_LOCAL
+		dataType: double
+		lineageTag: 346c3cdd-7e60-491a-9007-209b91fdeef6
+		summarizeBy: sum
+		sourceColumn: CLOSED_RENEWED_SOFTWARE_ARR_LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOSED_RENEWED_SOFTWARE_ARR_USD
+		dataType: double
+		lineageTag: b3acb7f7-3979-4447-a405-d9dbd183972c
+		summarizeBy: sum
+		sourceColumn: CLOSED_RENEWED_SOFTWARE_ARR_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOSED_RENEWABLE_COUNT
+		dataType: double
+		lineageTag: dd8d684b-dc7f-473f-860d-0fe1f4ea520f
+		summarizeBy: sum
+		sourceColumn: CLOSED_RENEWABLE_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOSED_RENEWABLE_ARR_LOCAL
+		dataType: double
+		lineageTag: 2d13abf9-d42e-409b-9b27-ff7d71d1f76c
+		summarizeBy: sum
+		sourceColumn: CLOSED_RENEWABLE_ARR_LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOSED_RENEWABLE_ARR_USD
+		dataType: double
+		lineageTag: 75f9958d-88f9-4749-953e-67c2511c148f
+		summarizeBy: sum
+		sourceColumn: CLOSED_RENEWABLE_ARR_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OPEN_EXPIRING_RENEWABLE_COUNT
+		dataType: double
+		lineageTag: 44b5fa0d-983b-422c-aeee-ee4c2d2858d0
+		summarizeBy: sum
+		sourceColumn: OPEN_EXPIRING_RENEWABLE_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OPEN_EXPIRING_RENEWABLE_ARR_LOCAL
+		dataType: double
+		lineageTag: a990a563-b408-47be-8e82-9e59fc3f1014
+		summarizeBy: sum
+		sourceColumn: OPEN_EXPIRING_RENEWABLE_ARR_LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OPEN_EXPIRING_RENEWABLE_ARR_USD
+		dataType: double
+		lineageTag: 1bec44a8-bbb7-48b9-86b7-512ba4c0bbae
+		summarizeBy: sum
+		sourceColumn: OPEN_EXPIRING_RENEWABLE_ARR_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SPECIFIC_LOSS_REASON
+		dataType: string
+		lineageTag: 6dd6b76e-845e-424b-85ef-f8eb98eb3cf7
+		summarizeBy: none
+		sourceColumn: SPECIFIC_LOSS_REASON
+
+		annotation SummarizationSetBy = Automatic
+
+	column OVERALL_LOSS_REASON
+		dataType: string
+		lineageTag: dc1fc706-be34-4135-8ef2-81c13b6e69cf
+		summarizeBy: none
+		sourceColumn: OVERALL_LOSS_REASON
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESOLUTION_OF_LOSS_REASON
+		dataType: string
+		lineageTag: ec231e55-0614-47c6-b37d-210a242dc8ea
+		summarizeBy: none
+		sourceColumn: RESOLUTION_OF_LOSS_REASON
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOWNGRADE_REASON
+		dataType: string
+		lineageTag: 3fd9a823-36e1-4f50-8cd9-69659b500ff0
+		summarizeBy: none
+		sourceColumn: DOWNGRADE_REASON
+
+		annotation SummarizationSetBy = Automatic
+
+	column HQ_COUNTRY
+		dataType: string
+		lineageTag: a3530bfa-df5b-483f-ae71-c1958c6ae17d
+		summarizeBy: none
+		sourceColumn: HQ_COUNTRY
+
+		annotation SummarizationSetBy = Automatic
+
+	column OPP_SOURCE
+		dataType: string
+		lineageTag: 5aba23b4-4abc-4824-b167-e56678c0e7e8
+		summarizeBy: none
+		sourceColumn: OPP_SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SQO_DATE
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 81e5ab82-cb6b-4aba-b0bf-f6de55593e13
+		summarizeBy: none
+		sourceColumn: SQO_DATE
+
+		variation Variation
+			isDefault
+			relationship: 7e6ef243-66ed-49b5-bc56-c3642e697ac2
+			defaultHierarchy: LocalDateTable_0459e92c-7dcc-40d6-bf74-8cd49ef00335.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column SALES_CYCLE
+		dataType: double
+		lineageTag: 01dc8341-7d7a-4d0b-9346-9cf8e132ed7b
+		summarizeBy: sum
+		sourceColumn: SALES_CYCLE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CS_SEGMENTATION
+		dataType: string
+		lineageTag: 8552c19f-6878-43f8-a4d4-3de11b030fe4
+		summarizeBy: none
+		sourceColumn: CS_SEGMENTATION
+
+		annotation SummarizationSetBy = Automatic
+
+	column EXPIRY_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b79bf4c1-844c-4a9d-858f-91d968b6bb5b
+		summarizeBy: none
+		sourceColumn: EXPIRY_DATE
+
+		variation Variation
+			isDefault
+			relationship: 0d249b22-2c42-4212-a8aa-a2bcb860f7d6
+			defaultHierarchy: LocalDateTable_1ee991b9-7e2d-4652-8131-33983515bcb1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EXPIRY_FM_OF_FQ
+		dataType: double
+		lineageTag: 660837f9-e075-46d9-9ec3-b9f36a9e5c7a
+		summarizeBy: sum
+		sourceColumn: EXPIRY_FM_OF_FQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EXPIRY_MONTH_NAME
+		dataType: string
+		lineageTag: bfd3ddaf-a4dc-4fda-8609-e874388e67cf
+		summarizeBy: none
+		sourceColumn: EXPIRY_MONTH_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column EXPIRY_FW_OF_FQ
+		dataType: double
+		lineageTag: 90ee5b6d-efe6-4cd8-8e47-d6219197df73
+		summarizeBy: sum
+		sourceColumn: EXPIRY_FW_OF_FQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOSE_FM_OF_FQ
+		dataType: double
+		lineageTag: 5d339e22-bd9e-4c2e-bdd5-991dfc49dcaa
+		summarizeBy: sum
+		sourceColumn: CLOSE_FM_OF_FQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOSE_MONTH_NAME
+		dataType: string
+		lineageTag: f55cd96b-50a4-4de4-a69c-0e0fb8aab813
+		summarizeBy: none
+		sourceColumn: CLOSE_MONTH_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLOSE_FW_OF_FQ
+		dataType: double
+		lineageTag: af6bceac-385a-4e2c-a2e7-f967ce58af86
+		summarizeBy: sum
+		sourceColumn: CLOSE_FW_OF_FQ
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CS_BU
+		dataType: string
+		lineageTag: 04682710-9b54-4d69-a92d-b2f3809f1f6c
+		summarizeBy: none
+		sourceColumn: CS_BU
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALES_SEGMENT
+		dataType: string
+		lineageTag: 6f8d9dd8-db64-4534-bf84-d8611f2b1bb8
+		summarizeBy: none
+		sourceColumn: SALES_SEGMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLOSED_TYPE
+		dataType: string
+		lineageTag: b9eca626-1d41-417f-87cf-490bfe6d8969
+		summarizeBy: none
+		sourceColumn: CLOSED_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTAL_CHURN
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 6b0dce8a-77f3-4c89-a636-7c2c11bed91e
+		summarizeBy: sum
+		sourceColumn: TOTAL_CHURN
+
+		annotation SummarizationSetBy = Automatic
+
+	column NET_CHURN_ARR_LOCAL
+		dataType: double
+		lineageTag: 415d6c08-4b87-42cc-b8f3-6eadecaec4a6
+		summarizeBy: sum
+		sourceColumn: NET_CHURN_ARR_LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CHURN_DOWNGRADE_ARR
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 0bcaffa0-403f-400b-9de2-baca521d50c0
+		summarizeBy: sum
+		sourceColumn: CHURN_DOWNGRADE_ARR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHURN_LOST_ARR
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: c42fd48a-ce69-40c5-a4cc-93d95861e4c0
+		summarizeBy: sum
+		sourceColumn: CHURN_LOST_ARR
+
+		annotation SummarizationSetBy = Automatic
+
+	column MY_RENEWED_ARR_USD
+		dataType: double
+		lineageTag: 53a2dc30-2fcf-4fe3-a7c3-5fe7034b1d42
+		summarizeBy: sum
+		sourceColumn: MY_RENEWED_ARR_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MY_RENEWED_COUNT
+		dataType: double
+		lineageTag: f467365b-5e32-49e1-a5cc-c773c6d5ecfc
+		summarizeBy: sum
+		sourceColumn: MY_RENEWED_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAST_REFRESH
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cb11b309-7499-4845-a76f-4e2c056d72a9
+		summarizeBy: none
+		sourceColumn: LAST_REFRESH
+
+		variation Variation
+			isDefault
+			relationship: 4c2dc5d3-a63f-42e5-9b1d-37c5b775fc75
+			defaultHierarchy: LocalDateTable_b8ed4b07-9085-4b0c-8620-02b5f5f066b3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SVP
+		dataType: string
+		lineageTag: 7953441a-0830-4042-9da9-49da06a51de6
+		summarizeBy: none
+		sourceColumn: SVP
+
+		annotation SummarizationSetBy = Automatic
+
+	column RVP
+		dataType: string
+		lineageTag: 2506c5ba-2ffd-42cf-90e0-f9668091f8d1
+		summarizeBy: none
+		sourceColumn: RVP
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLM
+		dataType: string
+		lineageTag: 829a9f0e-2213-403b-b82b-4ac3381f7007
+		summarizeBy: none
+		sourceColumn: FLM
+
+		annotation SummarizationSetBy = Automatic
+
+	column STAGE_DURATION
+		dataType: double
+		lineageTag: f1a4a9c1-c1dc-4d9b-8f7e-91a5cf3c1f2b
+		summarizeBy: sum
+		sourceColumn: STAGE_DURATION
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUBSCRIPTION_SKU_COUNT
+		dataType: double
+		lineageTag: c311e63e-2eb7-458b-8a34-4123bafd5c90
+		summarizeBy: sum
+		sourceColumn: SUBSCRIPTION_SKU_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OPP_TYPE_BUCKET
+		dataType: string
+		lineageTag: eb2363ac-5744-44fe-9fa2-3b9fc441eaf6
+		summarizeBy: none
+		sourceColumn: OPP_TYPE_BUCKET
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE_SYSTEM
+		dataType: string
+		lineageTag: c2081789-fa08-4c01-ad0d-50883d1f708a
+		summarizeBy: none
+		sourceColumn: SOURCE_SYSTEM
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_CREATED_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6c27a159-e0d0-485e-a076-4e4d98ae35e7
+		summarizeBy: none
+		sourceColumn: ELT_CREATED_DATE
+
+		variation Variation
+			isDefault
+			relationship: d053eb32-1aa4-4aa2-8a34-cf2df13baf1e
+			defaultHierarchy: LocalDateTable_d9fbfca6-c0b8-4fe1-9c20-ff1d8cc87e6c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_CREATED_BY
+		dataType: string
+		lineageTag: 7c14b6b6-fc28-4a60-b7b4-85dba903f067
+		summarizeBy: none
+		sourceColumn: ELT_CREATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_UPDATED_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 52e60e0c-0eb8-4f6e-a456-9f25750303d2
+		summarizeBy: none
+		sourceColumn: ELT_UPDATED_DATE
+
+		variation Variation
+			isDefault
+			relationship: b6fe1f8b-c658-40c7-a734-9e61acf1772e
+			defaultHierarchy: LocalDateTable_31392727-6b02-4bc3-bd14-0194bea2fe8c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_UPDATED_BY
+		dataType: string
+		lineageTag: 4d85ba6e-f3cc-4220-85fe-662323b068e8
+		summarizeBy: none
+		sourceColumn: ELT_UPDATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Segment Sort Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9af6b29b-0aeb-451b-a6fc-d865ccc788e2
+		summarizeBy: sum
+		sourceColumn: Sales Segment Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column EXTENSION_EXPIRATION_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e5da2ed6-9c77-4600-a2c0-d7885d55f8ab
+		summarizeBy: none
+		sourceColumn: EXTENSION_EXPIRATION_DATE
+
+		variation Variation
+			isDefault
+			relationship: aded71fd-77fd-4491-8c2d-36a9942f3657
+			defaultHierarchy: LocalDateTable_9a0e007a-db26-4b78-8ced-fdf54f7cf0e8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TERRITORY_NAME
+		dataType: string
+		lineageTag: ea914565-b82d-4d74-8643-774da5ed1a29
+		summarizeBy: none
+		sourceColumn: TERRITORY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_OWNER
+		dataType: string
+		lineageTag: 39c6c041-a543-4e57-bc72-957edea6f80c
+		summarizeBy: none
+		sourceColumn: TERRITORY_OWNER
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_OWNER_ID
+		dataType: string
+		lineageTag: fc3f62af-8ba9-4728-8433-0149cb1a2461
+		summarizeBy: none
+		sourceColumn: TERRITORY_OWNER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BU
+		dataType: string
+		lineageTag: ceb9f7ac-e40d-436e-bc84-a6440ee38d4d
+		summarizeBy: none
+		sourceColumn: BU
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_REGION
+		dataType: string
+		lineageTag: 2f35ef21-58c2-40f6-af29-a350cf5ea28c
+		summarizeBy: none
+		sourceColumn: TERRITORY_REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_SUB_REGION
+		dataType: string
+		lineageTag: de3b14d1-4531-427a-80c4-7f6616a97c4b
+		summarizeBy: none
+		sourceColumn: TERRITORY_SUB_REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_SEGMENT
+		dataType: string
+		lineageTag: 4cc905e2-f027-400b-bca3-21409bdb8317
+		summarizeBy: none
+		sourceColumn: TERRITORY_SEGMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_TEAM
+		dataType: string
+		lineageTag: c9f856d7-0346-4e67-b083-b57fd9a233ee
+		summarizeBy: none
+		sourceColumn: TERRITORY_TEAM
+
+		annotation SummarizationSetBy = Automatic
+
+	column TERRITORY_COUNT
+		dataType: string
+		lineageTag: 65866816-fbc8-44eb-9739-7215c55fb337
+		summarizeBy: none
+		sourceColumn: TERRITORY_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column CSM
+		dataType: string
+		lineageTag: 85cb75ac-15d7-4449-b52e-f3d7a17d6c21
+		summarizeBy: none
+		sourceColumn: CSM
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARY_COMPETITOR
+		dataType: string
+		lineageTag: 13aa05ab-80f5-407e-a4d8-457df4afd48c
+		summarizeBy: none
+		sourceColumn: PRIMARY_COMPETITOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column WHY_DID_WE_WIN
+		dataType: string
+		lineageTag: 38165550-7ccb-41c5-8e30-195b9102cb83
+		summarizeBy: none
+		sourceColumn: WHY_DID_WE_WIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column RENEWAL_ASSOCIATE_NAME
+		dataType: string
+		lineageTag: 3f919910-6fed-4615-a7fa-3f8de6382203
+		summarizeBy: none
+		sourceColumn: RENEWAL_ASSOCIATE_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column GTM_REGION
+		dataType: string
+		lineageTag: d618e71b-7692-4ecb-9d49-10ded01cdd49
+		summarizeBy: none
+		sourceColumn: GTM_REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column GTM_SUB_REGION
+		dataType: string
+		lineageTag: e64530ac-663d-4529-81e6-f149b4732887
+		summarizeBy: none
+		sourceColumn: GTM_SUB_REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column GTM_SALES_SEGMENT
+		dataType: string
+		lineageTag: 96e8dc46-b196-4b26-b4a4-4d2627a8df4b
+		summarizeBy: none
+		sourceColumn: GTM_SALES_SEGMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column EXPIRY_FY_FQ
+		dataType: string
+		lineageTag: 5645b237-8c26-4a49-b791-6e92ab502ab0
+		summarizeBy: none
+		sourceColumn: EXPIRY_FY_FQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLOSE_FY_FQ
+		dataType: string
+		lineageTag: b061adfc-03e3-4204-b58f-18877ccd2b7a
+		summarizeBy: none
+		sourceColumn: CLOSE_FY_FQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column RENEWAL_REPORTING_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d54831b2-4d19-486a-aacb-cdb8aa2a722f
+		summarizeBy: none
+		sourceColumn: RENEWAL_REPORTING_DATE
+
+		variation Variation
+			isDefault
+			relationship: a98142ac-bb07-48ef-81fe-74ee22875dbe
+			defaultHierarchy: LocalDateTable_36652e4b-005d-427f-9df7-b8718782bdc0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SALES_MOTION
+		dataType: string
+		lineageTag: 88e9711b-fcca-4265-8ad2-253856854661
+		summarizeBy: none
+		sourceColumn: SALES_MOTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACV_CMP
+		dataType: double
+		lineageTag: acbe8a7f-ebb1-41a2-a9dd-dc17aa7177f5
+		summarizeBy: sum
+		sourceColumn: ACV_CMP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_UCPM
+		dataType: double
+		lineageTag: b5df0a94-c00f-413f-983c-7ea93350e43a
+		summarizeBy: sum
+		sourceColumn: ACV_UCPM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_THIRD_PARTY_MANAGEMENT
+		dataType: double
+		lineageTag: 171beac6-651e-4c10-83e7-6f9cb4ba4294
+		summarizeBy: sum
+		sourceColumn: ACV_THIRD_PARTY_MANAGEMENT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_TECH_RISK_COMPLIANCE
+		dataType: double
+		lineageTag: 329e8572-a1d1-4dfc-883d-b23790770ee0
+		summarizeBy: sum
+		sourceColumn: ACV_TECH_RISK_COMPLIANCE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_PRIVACY_AUTOMATION
+		dataType: double
+		lineageTag: 7ffe0c08-7a0e-4a29-936b-04f0dcf62ffd
+		summarizeBy: sum
+		sourceColumn: ACV_PRIVACY_AUTOMATION
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_DATA_GOVERNANCE
+		dataType: double
+		lineageTag: bbeabdba-3ab6-4a27-8f99-b207ec23e36f
+		summarizeBy: sum
+		sourceColumn: ACV_DATA_GOVERNANCE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_AIGOVERNANCE
+		dataType: double
+		lineageTag: 4ae36199-66fb-474a-b058-638a3d49f704
+		summarizeBy: sum
+		sourceColumn: ACV_AIGOVERNANCE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_ETHICS_COMPLIANCE
+		dataType: double
+		lineageTag: 024a7dee-8fb3-497f-b586-c3e1b46926fb
+		summarizeBy: sum
+		sourceColumn: ACV_ETHICS_COMPLIANCE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_SUCCESS_PACKAGES
+		dataType: double
+		lineageTag: 897dc248-2de9-468f-a8d6-857cfb6bc4c2
+		summarizeBy: sum
+		sourceColumn: ACV_SUCCESS_PACKAGES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_PLATFORM
+		dataType: double
+		lineageTag: 30f3f251-041f-45b8-b948-af006b7054f6
+		summarizeBy: sum
+		sourceColumn: ACV_PLATFORM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACV_OTHER
+		dataType: double
+		lineageTag: 5e34aea4-d18b-4284-83f4-4913b3b17b22
+		summarizeBy: sum
+		sourceColumn: ACV_OTHER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'VW_F_RENEWALS (2)' = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("onetrust-adw.snowflakecomputing.com","BI_WH"),
+				    ADW_DB_Database = Source{[Name="ADW_DB",Kind="Database"]}[Data],
+				    FACT_SALES_Schema = ADW_DB_Database{[Name="FACT_SALES",Kind="Schema"]}[Data],
+				    VW_F_RENEWALS_View = FACT_SALES_Schema{[Name="VW_F_RENEWALS",Kind="View"]}[Data],
+				    #"Merged Queries" = Table.NestedJoin(VW_F_RENEWALS_View, {"SALES_SEGMENT"}, #"Segment Sort", {"SALES_SEGMENT"}, "Segment Sort", JoinKind.LeftOuter),
+				    #"Expanded Segment Sort" = Table.ExpandTableColumn(#"Merged Queries", "Segment Sort", {"Sales Segment Sort Order"}, {"Segment Sort.Sales Segment Sort Order"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Segment Sort",{{"Segment Sort.Sales Segment Sort Order", "Sales Segment Sort Order"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

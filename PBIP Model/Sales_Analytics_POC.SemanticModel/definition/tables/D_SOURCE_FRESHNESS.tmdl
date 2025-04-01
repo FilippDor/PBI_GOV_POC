@@ -1,0 +1,67 @@
+table D_SOURCE_FRESHNESS
+	lineageTag: 8884a5f2-735b-43b3-8190-225501a16129
+
+	measure 'Latest Sync Time' = CALCULATE(MAX(D_SOURCE_FRESHNESS[LATEST_SYNC_TIMESTAMP]),D_SOURCE_FRESHNESS[DATA_SOURCE] = "sfdc")
+		formatString: General Date
+		lineageTag: 8c6303d8-9a84-4f9d-9fea-e373506af39d
+
+	measure 'EST Time' = FORMAT([Latest Sync Time]- TIME(4,0,0), "mm-dd-yyyy h:nn:ss AM/PM")
+		lineageTag: 966c8e35-44c6-43f6-a1d0-0af3ebc8f0fc
+
+	column DATA_SOURCE
+		dataType: string
+		lineageTag: 0ced51e5-6b6c-4785-9b68-e4d3f64e88b4
+		summarizeBy: none
+		sourceColumn: DATA_SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column LATEST_SYNC_TIMESTAMP
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ab401cac-b99c-4707-a897-691af7beafe0
+		summarizeBy: none
+		sourceColumn: LATEST_SYNC_TIMESTAMP
+
+		variation Variation
+			isDefault
+			relationship: b1557ed3-3a70-4aea-95fa-ae7e9aa1d47c
+			defaultHierarchy: LocalDateTable_22e5d3b6-dff0-4cc5-ac62-9ad172b74f20.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_CREATED_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b9a03a95-c732-42dc-a80f-b8eabef4530d
+		summarizeBy: none
+		sourceColumn: ELT_CREATED_DATE
+
+		variation Variation
+			isDefault
+			relationship: 26d240aa-9755-41d5-8a30-7c4b48f574bb
+			defaultHierarchy: LocalDateTable_27210145-4ae5-4aa8-874e-65abc7381b70.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_CREATED_BY
+		dataType: string
+		lineageTag: e352cc01-0c1d-485e-9e38-bb34753b6a88
+		summarizeBy: none
+		sourceColumn: ELT_CREATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_SOURCE_FRESHNESS-f26b13e5-210e-45ab-b68d-ff69daff23bf = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("onetrust-adw.snowflakecomputing.com","BI_WH"),
+				    ADW_DB_Database = Source{[Name="ADW_DB",Kind="Database"]}[Data],
+				    DIMS_CONF_Schema = ADW_DB_Database{[Name="DIMS_CONF",Kind="Schema"]}[Data],
+				    D_SOURCE_FRESHNESS_Table = DIMS_CONF_Schema{[Name="D_SOURCE_FRESHNESS",Kind="Table"]}[Data]
+				in
+				    D_SOURCE_FRESHNESS_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,76 @@
+table 'Product Renewals Measures'
+	lineageTag: 9e38441c-b012-4ea4-8fe9-555841a9ed7f
+
+	measure Oppty_Expiring = DISTINCTCOUNT(VW_F_PRODUCT_RENEWALS[OPPORTUNITY_ID])
+		formatString: #,0
+		lineageTag: dcbc4dfb-1c63-4d5a-8a3f-11e5dd5f10b1
+
+	measure 'Oppty Renewed' = CALCULATE([Oppty_Expiring],FILTER(VW_F_PRODUCT_RENEWALS,VW_F_PRODUCT_RENEWALS[STAGE_NAME] = "Closed Won"))
+		formatString: #,0
+		lineageTag: e38e418c-a356-44bd-9c64-f7cd5851e87e
+
+	measure SPACER_P = ""
+		lineageTag: 4ffde8b6-268e-406f-a292-b1cf205fd8d6
+
+	measure 'Closed Renewed ARR_P' = CALCULATE(SUM(VW_F_PRODUCT_RENEWALS[TOTAL_ARR_USD]),VW_F_PRODUCT_RENEWALS[STAGE_NAME] = "Closed Won")
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f5b5844f-38b4-43b3-b560-befc9d25c0be
+
+	measure 'Closed Renewable ARR_P' = CALCULATE(SUM(VW_F_PRODUCT_RENEWALS[PRODUCT_RENEWABLE_ARR_USD]),VW_F_PRODUCT_RENEWALS[STAGE_NAME] = "Closed Won")
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 49307061-cd6a-4634-a4e7-6897fda4610c
+
+	measure 'Renewal Rate_P' = DIVIDE([Closed Renewed ARR_P],[Closed Renewable ARR_P],0)
+		formatString: 0%;-0%;0%
+		lineageTag: 1f7354ee-5e7d-429a-aea8-1da77e50d2f8
+
+	measure MAX_Renewable_ARR = CALCULATE(SUM(VW_F_PRODUCT_RENEWALS[PRODUCT_RENEWABLE_ARR_USD]))
+		lineageTag: 6479b91d-f511-4c0b-8999-ec8360f7b694
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Product Renewed ARR' =
+			
+			VAR _Group =
+			    SUMMARIZE (
+			        VW_F_PRODUCT_RENEWALS,
+			        [OPPORTUNITY_ID],
+			        [FISCAL_YEAR_QUARTER],
+			        "Group1", CALCULATE ( SUM ( VW_F_PRODUCT_RENEWALS[TOTAL_ARR_USD] ) ),
+			        "Group2", CALCULATE ( SUM ( VW_F_PRODUCT_RENEWALS[PRODUCT_RENEWABLE_ARR_USD] ) )
+			    )
+			RETURN
+			    SUMX ( FILTER ( _Group, [Group1] >= [Group2] ), [Group2] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3dea24ed-013f-4bf0-892a-bd95264ac14a
+
+	measure 'Product Renewed ARR2' = ```
+			
+			VAR Opportunities = 
+			ADDCOLUMNS (
+			    VALUES ( VW_F_PRODUCT_RENEWALS[OPPORTUNITY_ID] ),
+			    "Max Renewable ARR", MIN ( [MAX_Renewable_ARR], SUM ( VW_F_PRODUCT_RENEWALS[TOTAL_ARR_USD] ) )
+			)
+			VAR Result =
+			SUMX (
+			    Opportunities,
+			    [MAX Renewable ARR]
+			)
+			
+			RETURN Result
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a2687a88-b22c-439a-819d-b17799010bf2
+
+	partition 'Product Renewals Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

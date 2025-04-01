@@ -1,0 +1,137 @@
+table REF_SOLUTION_HIERARCHY
+	lineageTag: e782d885-c4a6-4dbe-b7da-89543e37e69d
+
+	column SKEY
+		dataType: double
+		lineageTag: 0ab87055-96ca-499a-a22f-37e0eb076377
+		summarizeBy: sum
+		sourceColumn: SKEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOLUTION
+		dataType: string
+		lineageTag: 2d4784de-2a24-449d-afbe-7c8d6e90afe3
+		summarizeBy: none
+		sourceColumn: SOLUTION
+		sortByColumn: Solution_Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column PACKAGE
+		dataType: string
+		lineageTag: ce59390b-c47f-485a-a4d4-7b4b5584db56
+		summarizeBy: none
+		sourceColumn: PACKAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MODULE_SFDC
+		dataType: string
+		lineageTag: 103153ce-ea29-4e25-9c03-a5585a60ca0e
+		summarizeBy: none
+		sourceColumn: MODULE_SFDC
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTIVE_FLAG
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4add5fa6-1206-49f0-a204-7f659ab35d77
+		summarizeBy: none
+		sourceColumn: ACTIVE_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE_SYSTEM
+		dataType: string
+		lineageTag: 27849234-1154-4440-9fd0-7cd4ba0a94f6
+		summarizeBy: none
+		sourceColumn: SOURCE_SYSTEM
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_CREATED_BY
+		dataType: string
+		lineageTag: f07cf3c5-ec57-4a6c-8408-13198abeef54
+		summarizeBy: none
+		sourceColumn: ELT_CREATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_UPDATED_BY
+		dataType: string
+		lineageTag: 85314fcd-b196-4bb2-a40e-30af977189b1
+		summarizeBy: none
+		sourceColumn: ELT_UPDATED_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_CREATED_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b5787097-b4a4-49e9-be69-f68a3a123b31
+		summarizeBy: none
+		sourceColumn: ELT_CREATED_DATE
+
+		variation Variation
+			isDefault
+			relationship: 17597a92-79ed-47e8-bb6d-9bfca70d0a40
+			defaultHierarchy: LocalDateTable_bd2b6090-e8c8-401a-8d4b-b37073eb2331.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELT_UPDATED_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0ba5cecd-2994-40b1-89c6-8273b7a94f75
+		summarizeBy: none
+		sourceColumn: ELT_UPDATED_DATE
+
+		variation Variation
+			isDefault
+			relationship: 47f010d8-9477-48ba-8119-6bae42636c4d
+			defaultHierarchy: LocalDateTable_74c480f9-40e2-4382-b700-d6e036b90b25.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Solution_Sort
+		dataType: double
+		lineageTag: 25b9ec31-cba1-4c99-bda3-636ad16d2a29
+		summarizeBy: sum
+		sourceColumn: Solution_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUB_SOLUTION
+		dataType: string
+		lineageTag: 7fe62340-18f7-4d3c-acb6-a31f68b3e531
+		summarizeBy: none
+		sourceColumn: SUB_SOLUTION
+
+		annotation SummarizationSetBy = Automatic
+
+	partition REF_SOLUTION_HIERARCHY = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("onetrust-adw.snowflakecomputing.com/","BI_WH"),
+				    ADW_DB_Database = Source{[Name="ADW_DB",Kind="Database"]}[Data],
+				    DIMS_CONF_Schema = ADW_DB_Database{[Name="DIMS_CONF",Kind="Schema"]}[Data],
+				    REF_SOLUTION_HIERARCHY_Table = DIMS_CONF_Schema{[Name="REF_SOLUTION_HIERARCHY",Kind="Table"]}[Data],
+				    #"Merged Queries" = Table.NestedJoin(REF_SOLUTION_HIERARCHY_Table, {"SOLUTION"}, VW_REF_SORT_ORDER, {"SOLUTION"}, "VW_REF_SORT_ORDER", JoinKind.LeftOuter),
+				    #"Expanded VW_REF_SORT_ORDER" = Table.ExpandTableColumn(#"Merged Queries", "VW_REF_SORT_ORDER", {"SORT_ORDER"}, {"VW_REF_SORT_ORDER.SORT_ORDER"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded VW_REF_SORT_ORDER",{{"VW_REF_SORT_ORDER.SORT_ORDER", "Solution_Sort"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

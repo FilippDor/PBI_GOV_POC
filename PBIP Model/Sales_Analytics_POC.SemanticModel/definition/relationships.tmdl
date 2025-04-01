@@ -1,0 +1,291 @@
+relationship 3495919e-7e28-4e8c-8f04-c51b6a6fb0d1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_ACV.EXPIRATION_DATE
+	toColumn: LocalDateTable_d97e43c6-ea71-44f7-bb9a-99653c0fd2a5.Date
+
+relationship cab60cc6-bec7-445c-83e7-027769632dfb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_ACV.SQO_DATE
+	toColumn: LocalDateTable_3d33d68c-94b3-4acf-8937-4968167f8fdc.Date
+
+relationship 2f33a4cf-b295-4970-b5da-a8dacb8d67a1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_RENEWALS.CLOSE_DATE
+	toColumn: LocalDateTable_9b2eadb7-f874-4004-8b4a-30f7e42d9532.Date
+
+relationship bd48115e-0e8f-4857-b5a4-2a8ac17c16d9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_RENEWALS.SQO_DATE
+	toColumn: LocalDateTable_c65b35d1-c224-459c-ab8b-5b7d2da3b59c.Date
+
+relationship 55f86d27-5c1c-4c7a-8b18-510f21346c90
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_RENEWALS.EXPIRY_DATE
+	toColumn: LocalDateTable_e017e8bd-a099-41a0-b579-e7074b51fda3.Date
+
+relationship 5cc2c45d-34da-4b11-8dea-82408ea0890f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_D_DATE.CREATED_DATETIME
+	toColumn: LocalDateTable_a784f9ef-1f47-4d0d-a965-6b9b735e8feb.Date
+
+relationship f2d61bfc-19b4-464e-90d8-8cbb58cdc2b9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_D_DATE.UPDATED_DATETIME
+	toColumn: LocalDateTable_e43339f1-28b3-48f9-855a-0bdf9e46b717.Date
+
+relationship 6ccb2b25-ebdb-4282-a82f-193e6d3f9c1c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_D_DATE.CURRENT_LOCAL_TIMESTAMP
+	toColumn: LocalDateTable_a0dde9f6-9b51-4fd8-9ee4-3b71db49da36.Date
+
+relationship 7f42fc22-f508-4859-9307-6e3da56b19e7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_D_DATE.CURRENT_EST_TIMESTAMP
+	toColumn: LocalDateTable_115d48ca-186f-41f6-a232-dab595f3cc61.Date
+
+relationship b1557ed3-3a70-4aea-95fa-ae7e9aa1d47c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_SOURCE_FRESHNESS.LATEST_SYNC_TIMESTAMP
+	toColumn: LocalDateTable_22e5d3b6-dff0-4cc5-ac62-9ad172b74f20.Date
+
+relationship 2819cf6f-72af-4a2a-b916-312c9eca2d14
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_D_DATE.FULL_DATE
+	toColumn: LocalDateTable_0066f8d0-02b4-47d9-866d-1023296eadd8.Date
+
+relationship a67749d0-8227-4c85-9e7b-9369cf9e2978
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Current Date'.CURRENT_DATE
+	toColumn: LocalDateTable_f5f698af-6dff-4836-8768-e24035ded4e0.Date
+
+relationship 1e683e9c-b64d-414e-85d8-fe1e9ba3f6e4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_D_DATE.FIRST_FISCAL_DAY_OF_QUARTER
+	toColumn: LocalDateTable_e3e3a40f-3b03-4953-96dd-adb760837ccc.Date
+
+relationship f53e180a-c786-402a-a0d5-1e629f2d52c7
+	fromColumn: VW_F_ACV.DATE_KEY
+	toColumn: VW_D_DATE.DATE_KEY
+
+relationship 1a891bfc-bd44-46d5-ab30-d443f8aa8340
+	fromColumn: VW_F_RENEWALS.DATE_KEY
+	toColumn: VW_D_DATE.DATE_KEY
+
+relationship 84e96c69-2347-484f-9d9d-5e07eb51a276
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_ACV.'Close Month'
+	toColumn: LocalDateTable_c92d92bb-5c93-49b6-a016-2f627fabcb5c.Date
+
+relationship cfa90f1a-e614-4b71-8c60-f597ba0f61bf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_ACV.ELT_CREATED_DATE
+	toColumn: LocalDateTable_1e918bd0-bfe4-4847-aa99-95d2c254cbd8.Date
+
+relationship 87ea7689-2acf-4861-b657-7bf7a5ec7723
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_ACV.ELT_UPDATED_DATE
+	toColumn: LocalDateTable_da65be1d-55b8-45cc-98fc-6b076e5c6d04.Date
+
+relationship a73efc19-a9e3-4a46-bec9-2620782749c4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_RENEWALS.ELT_CREATED_DATE
+	toColumn: LocalDateTable_25dcea1a-d87e-4bbe-bbf7-47399a175289.Date
+
+relationship 90b6a373-7f44-4bc1-8410-67ef71052265
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_RENEWALS.ELT_UPDATED_DATE
+	toColumn: LocalDateTable_bf5a1f18-8d8a-4801-97b4-d0f0791184d7.Date
+
+relationship 26d240aa-9755-41d5-8a30-7c4b48f574bb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_SOURCE_FRESHNESS.ELT_CREATED_DATE
+	toColumn: LocalDateTable_27210145-4ae5-4aa8-874e-65abc7381b70.Date
+
+relationship d8128d10-3f76-47de-bc83-29260313e3bd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PRODUCT_ACV.EXPIRATION_DATE
+	toColumn: LocalDateTable_2646bec3-faf9-4a4c-8825-21ce1d4535d0.Date
+
+relationship c9b8e938-5667-4532-93bd-5e20eed4e3c4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PRODUCT_ACV.SQO_DATE
+	toColumn: LocalDateTable_9a2cc2b5-dc52-48b8-9127-7d3237826ac2.Date
+
+relationship fa6df6a1-63c4-4a66-8066-b31f8623ebeb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PRODUCT_ACV.ELT_CREATED_DATE
+	toColumn: LocalDateTable_3940a965-2cee-402c-8f5f-e2bd88ba9be2.Date
+
+relationship 30cf420c-7c9a-4a16-93fd-2ea2d73e339a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PRODUCT_ACV.ELT_UPDATED_DATE
+	toColumn: LocalDateTable_f5b91778-c37f-442b-9abb-e30ae22c9f91.Date
+
+relationship 6d55a8df-a8a2-4876-957e-d5364b1a1f42
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PRODUCT_ACV.CLOSE_DATE
+	toColumn: LocalDateTable_df00f491-d162-4e45-8fa0-ab45bf9e0828.Date
+
+relationship baa672b4-bb12-43ee-b68f-fa77703fa4c4
+	fromColumn: VW_F_PIPELINE_HISTORY.DS
+	toColumn: VW_D_DATE.FULL_DATE
+
+relationship fbcc1cd6-10fa-4d70-a58b-1b2df9c5382b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PRODUCT_ACV.'Close Month'
+	toColumn: LocalDateTable_e46a12f6-cd23-432a-a0cc-26aa406df5b1.Date
+
+relationship f89ae5a3-8b9c-4601-b379-c170c9ccf5f7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PIPELINE_HISTORY.ELT_CREATED_DATE
+	toColumn: LocalDateTable_24c58743-672a-44f7-bb3c-8b4a6767396c.Date
+
+relationship 3233168e-80bf-4d36-90ef-4a4ad2211976
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PIPELINE_HISTORY.ELT_UPDATED_DATE
+	toColumn: LocalDateTable_4c2c6f4c-fc2d-43a0-b19a-7dd959734b83.Date
+
+relationship 073b535b-dc1f-48be-aea1-ca22ecf35d9a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PRODUCT_ACV_EXCEPTIONS.CLOSE_DATE
+	toColumn: LocalDateTable_2e653519-44d7-44b9-beed-f49f15f394ae.Date
+
+relationship ed37f2fe-476d-4bb8-b6fc-de9288b56b8f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_RENEWALS.'Exp Month'
+	toColumn: LocalDateTable_53f72fe6-77a9-4926-b76a-c054b88673ce.Date
+
+relationship 482d2e25-98d0-4139-a3a8-a060a8004c43
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_RENEWALS.EXPIRATION_DATE
+	toColumn: LocalDateTable_115d3c50-7f9a-4e6f-9844-1bd6f69ebd14.Date
+
+relationship 4a6c08d7-3b06-4a1e-936a-c951d89c917b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VW_F_RENEWALS (2)'.CLOSE_DATE
+	toColumn: LocalDateTable_f8be4b67-00a2-474c-a087-da562abbf801.Date
+
+relationship 7e6ef243-66ed-49b5-bc56-c3642e697ac2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VW_F_RENEWALS (2)'.SQO_DATE
+	toColumn: LocalDateTable_0459e92c-7dcc-40d6-bf74-8cd49ef00335.Date
+
+relationship 0d249b22-2c42-4212-a8aa-a2bcb860f7d6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VW_F_RENEWALS (2)'.EXPIRY_DATE
+	toColumn: LocalDateTable_1ee991b9-7e2d-4652-8131-33983515bcb1.Date
+
+relationship 4c2dc5d3-a63f-42e5-9b1d-37c5b775fc75
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VW_F_RENEWALS (2)'.LAST_REFRESH
+	toColumn: LocalDateTable_b8ed4b07-9085-4b0c-8620-02b5f5f066b3.Date
+
+relationship d053eb32-1aa4-4aa2-8a34-cf2df13baf1e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VW_F_RENEWALS (2)'.ELT_CREATED_DATE
+	toColumn: LocalDateTable_d9fbfca6-c0b8-4fe1-9c20-ff1d8cc87e6c.Date
+
+relationship b6fe1f8b-c658-40c7-a734-9e61acf1772e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VW_F_RENEWALS (2)'.ELT_UPDATED_DATE
+	toColumn: LocalDateTable_31392727-6b02-4bc3-bd14-0194bea2fe8c.Date
+
+relationship a728f81b-3b61-4f87-8e1a-8f07eb647817
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VW_F_RENEWALS (2)'.EXPIRATION_DATE
+	toColumn: LocalDateTable_67b5e482-3bf9-4030-b71f-08e08714e94c.Date
+
+relationship 1e9d89f2-f902-4adc-9a40-5faa001502f1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'VW_F_RENEWALS (2)'.OPPORTUNITY_ID
+	toColumn: VW_F_ACV.OPPORTUNITY_ID
+
+relationship d826b614-39dd-4411-9716-d0ca2b3d31e0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_ACV.CLOSE_DATE
+	toColumn: LocalDateTable_96525ebd-e8e0-4d37-93ee-a5ba5cd254b2.Date
+
+relationship f1a64471-a6ca-4450-962c-9b5812204e95
+	fromColumn: VW_F_PRODUCT_ACV.OPPORTUNITY_ID
+	toColumn: VW_F_ACV.OPPORTUNITY_ID
+
+relationship 5cced053-d337-4ea5-90c6-64f3784b324b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PRODUCT_RENEWALS.ELT_CREATED_DATE
+	toColumn: LocalDateTable_c17cbe7b-9aee-4283-b10d-d5b410d5b722.Date
+
+relationship 34022057-b38f-43a5-bad3-9ffb6caeec5b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_PRODUCT_RENEWALS.ELT_UPDATED_DATE
+	toColumn: LocalDateTable_f11ee49f-691f-4580-a57d-2eb62d29a7f4.Date
+
+relationship 773cf918-fb2c-494e-b1cf-fbff57a6b7f5
+	fromColumn: VW_F_PRODUCT_RENEWALS.CLOSE_DATE
+	toColumn: VW_D_DATE.FULL_DATE
+
+relationship 85e5c64d-a4c3-43dc-8dd0-069765fcfb5d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_RENEWALS.EXTENSION_EXPIRATION_DATE
+	toColumn: LocalDateTable_ca5be98d-3911-40a4-a487-48d39b6c69d0.Date
+
+relationship aded71fd-77fd-4491-8c2d-36a9942f3657
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VW_F_RENEWALS (2)'.EXTENSION_EXPIRATION_DATE
+	toColumn: LocalDateTable_9a0e007a-db26-4b78-8ced-fdf54f7cf0e8.Date
+
+relationship AutoDetected_33a00e3d-b5e1-4830-a699-b2837c0fdfee
+	fromColumn: VW_F_ACV.STAGE_NAME
+	toColumn: VW_REF_SORT_ORDER.STAGE_NAME
+
+relationship AutoDetected_ccdf582e-44ee-43ef-8176-9c30896c418a
+	fromColumn: VW_F_RENEWALS.STAGE_NAME
+	toColumn: VW_REF_SORT_ORDER.STAGE_NAME
+
+relationship AutoDetected_80f40487-00ce-43b7-9996-b7ca4b31a7ad
+	isActive: false
+	fromColumn: VW_F_PRODUCT_ACV.STAGE_NAME
+	toColumn: VW_REF_SORT_ORDER.STAGE_NAME
+
+relationship AutoDetected_c1fce047-2ac1-4728-857f-87361634f317
+	isActive: false
+	fromColumn: 'VW_F_RENEWALS (2)'.STAGE_NAME
+	toColumn: VW_REF_SORT_ORDER.STAGE_NAME
+
+relationship AutoDetected_8ef82599-e33e-4154-8347-085655f747a2
+	fromColumn: VW_F_PRODUCT_RENEWALS.STAGE_NAME
+	toColumn: VW_REF_SORT_ORDER.STAGE_NAME
+
+relationship 17597a92-79ed-47e8-bb6d-9bfca70d0a40
+	joinOnDateBehavior: datePartOnly
+	fromColumn: REF_SOLUTION_HIERARCHY.ELT_CREATED_DATE
+	toColumn: LocalDateTable_bd2b6090-e8c8-401a-8d4b-b37073eb2331.Date
+
+relationship 47f010d8-9477-48ba-8119-6bae42636c4d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: REF_SOLUTION_HIERARCHY.ELT_UPDATED_DATE
+	toColumn: LocalDateTable_74c480f9-40e2-4382-b700-d6e036b90b25.Date
+
+relationship 35af5e82-4a90-8f6e-f6a6-db88f20a5bd6
+	fromColumn: VW_F_PRODUCT_ACV.MODULE
+	toColumn: REF_SOLUTION_HIERARCHY.MODULE_SFDC
+
+relationship 12148e42-d35a-4131-bc2f-b3f652569db1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_ACV.RENEWAL_REPORTING_DATE
+	toColumn: LocalDateTable_3aff17cc-a1e4-4c96-80a5-8f9860b89211.Date
+
+relationship 81bc1297-a48d-4158-b4da-30bebf8a7dfa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VW_F_RENEWALS.RENEWAL_REPORTING_DATE
+	toColumn: LocalDateTable_96e984ec-940b-452b-b204-dbcc766a253a.Date
+
+relationship a98142ac-bb07-48ef-81fe-74ee22875dbe
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'VW_F_RENEWALS (2)'.RENEWAL_REPORTING_DATE
+	toColumn: LocalDateTable_36652e4b-005d-427f-9df7-b8718782bdc0.Date
+
+relationship 38be5cd8-49e2-a6a8-797b-a1b2667e2c6a
+	fromColumn: MeasuresTable.Table
+	toColumn: Tables.Name
+
